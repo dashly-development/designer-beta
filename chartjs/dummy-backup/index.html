@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GridStack Demo</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gridstack@4.4.0/dist/gridstack.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="header-content">
+    <h1 class="text-left my-4">Dashly Designer V1.0</h1>
+    <div class="text-right">
+      <button id="designModeBtn" class="btn btn-secondary">Design</button>
+      <button id="commentModeBtn" class="btn btn-primary">Comment</button>
+      <button id="saveLayoutBtn" class="btn btn-success">Save Layout</button>
+      <button id="loadLayoutBtn" class="btn btn-info">Load Layout</button>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 d-none d-md-block sidebar">
+        <div>
+            <!-- Client-first -->          
+          <h5>Client-first</h5>
+          <select id="clientSelect" class="form-control mt-2">
+            <option value="" disabled selected>Select Client</option>
+            <!-- Options will be populated by JavaScript -->
+          </select>
+          <select id="dashboardSelect" class="form-control mt-2">
+            <option value="" disabled selected>Select Dashboard</option>
+            <!-- Options will be populated by JavaScript -->
+          </select>
+          <select id="dataTypeSelect" class="form-control mt-2">
+            <option value="" disabled selected>Select Data Type</option>
+            <!-- Options will be populated by JavaScript -->
+          </select>
+            <select id="clientChartTypeSelect" class="form-control mt-2">
+              <option value="" disabled selected>Select Chart Type</option>
+              <option value="line">Line Chart</option>
+              <option value="bar">Bar Chart</option>
+              <option value="column">Column Chart</option>
+              <option value="area">Area Chart</option>
+              <option value="pie">Pie Chart</option>
+              <option value="solidgauge">Solid Gauge</option>
+              <option value="packedbubble">Packed Bubble</option>
+            </select>
+          </select>
+          <button id="generateClientChartBtn" class="btn btn-primary mt-2">Generate Client Chart</button>
+        </div>
+        <div class="mt-3">
+            <!-- Chart-first -->          
+            <h5>Chart-first</h5>
+          <select id="businessAreaSelect" class="form-control mt-2">
+            <option value="" disabled selected>Select Business Area</option>
+            <option value="sales">Sales</option>
+            <option value="marketing">Marketing</option>
+            <option value="financial">Financial</option>
+            <option value="customer">Customer</option>
+            <option value="website">Website</option>
+            <option value="operational">Operational</option>
+            <option value="hr">Human Resources</option>
+            <option value="it">IT and Infrastructure</option>
+            <option value="health_safety">Health and Safety</option>
+          </select>
+          <select id="metricSelect" class="form-control mt-2">
+            <option value="" disabled selected>Select Metric</option>
+          </select>
+          <select id="chartTypeSelect" class="form-control mt-2">
+            <option value="" disabled selected>Select Chart Type</option>
+            <option value="line">Line Chart</option>
+            <option value="bar">Bar Chart</option>
+            <option value="column">Column Chart</option>
+            <option value="area">Area Chart</option>
+            <option value="pie">Pie Chart</option>
+            <option value="solidgauge">Solid Gauge</option>
+            <option value="packedbubble">Packed Bubble</option>
+          </select>
+          <button id="generateChartBtn" class="btn btn-primary mt-2">Generate Chart</button>
+          <button id="addTextLabelBtn" class="btn btn-primary mt-2">Add Text</button>
+          <button id="generateRandomChartsBtn" class="btn btn-secondary mt-2">Randomise</button>
+        </div>
+        <button id="debugBtn" class="btn btn-secondary mt-2">Debug</button>
+        <div id="sidebarCharts"></div>
+      </div>
+      <div class="col-sm-12 col-md-10">
+        <div class="grid-stack"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Widget Name Modal -->
+  <div class="modal fade" id="widgetNameModal" tabindex="-1" role="dialog" aria-labelledby="widgetNameModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="widgetNameModalLabel">Enter Widget Name</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="text" class="form-control" id="widgetNameInput" placeholder="Enter widget name">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="saveWidgetName">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comment Modal -->
+  <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="commentModalLabel">Add Comment</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <textarea id="commentInput" class="form-control" rows="4" placeholder="Enter your comment"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" id="saveCommentBtn" class="btn btn-primary">Save</button>
+          <button type="button" id="updateCommentBtn" class="btn btn-primary" style="display: none;">Update</button>
+          <button type="button" id="deleteCommentBtn" class="btn btn-danger" style="display: none;">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart Name Modal -->
+  <div class="modal fade" id="chartNameModal" tabindex="-1" role="dialog" aria-labelledby="chartNameModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="chartNameModalLabel">Enter Chart Name</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="text" class="form-control" id="chartNameInput" placeholder="Enter chart name">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="saveChartName">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load Layout Modal -->
+  <div class="modal" id="loadModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Load Layout</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-3"><strong>Layout Name</strong></div>
+            <div class="col-3"><strong>Creation Date & Time</strong></div>
+            <div class="col-3"><strong>Action</strong></div>
+            <div class="col-3"><strong>Delete</strong></div>
+          </div>
+          <div id="layout-list"></div>
+          <button id="clear-all-button" class="btn btn-danger mt-3">Clear All Layouts</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Debug Modal -->
+  <div class="modal fade" id="debugModal" tabindex="-1" role="dialog" aria-labelledby="debugModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog custom-modal" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="debugModalLabel">Debug Information</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="searchInfo" class="mb-2 text-left">
+            <span id="searchCounter"></span>
+          </div>
+          <div class="action-bar">
+            <input type="text" id="searchBox" class="form-control" placeholder="Search in local storage...">
+            <button type="button" class="btn btn-danger" id="clearLocalStorageBtn">Clear Local Storage</button>
+          </div>
+          <h6>Local Storage Contents</h6>
+          <div class="debug-container" id="localStorageContainer">
+            <pre id="localStorageContent"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Text Label Modal -->
+  <div class="modal fade" id="textLabelModal" tabindex="-1" role="dialog" aria-labelledby="textLabelModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="textLabelModalLabel">Add Text Label</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="text" class="form-control" id="textLabelInput" placeholder="Enter text">
+          <select id="textSizeSelect" class="form-control mt-2">
+            <option value="h1">H1</option>
+            <option value="h2">H2</option>
+            <option value="h3">H3</option>
+            <option value="h4">H4</option>
+            <option value="h5">H5</option>
+            <option value="body">Body</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="saveTextLabelBtn">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Include jQuery and GridStack scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gridstack@4.4.0/dist/gridstack-h5.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/highcharts-more.js"></script>
+  <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+  <script src="https://code.highcharts.com/modules/packed-bubble.js"></script>
+  <script type="module" src="scripts/config.js"></script>
+  <script type="module" src="scripts/main.js"></script>
+</body>
+
+</html>

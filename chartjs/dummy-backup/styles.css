@@ -1,0 +1,315 @@
+/* Import the Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Base Styles */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+.sidebar .form-control,
+.modal .form-control,
+.grid-stack-item-content,
+.grid-stack-item-content .widget-title,
+.grid-stack-item-content .widget-name,
+.btn-primary {
+    font-family: 'Inter', Arial, sans-serif;
+    color: #0b0e2c;
+    margin: 0;
+}
+
+/* Padding for body */
+body {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+/* Grid Stack */
+.grid-stack {
+    background: #f7f9fc;
+    height: 600px;
+    position: relative; /* Ensure grid lines align correctly */
+}
+
+/* Base styles for GridStack items */
+.grid-stack .grid-stack-item {
+    border: 2px dotted transparent; /* Invisible border by default */
+    transition: border-color 0.2s;  /* Smooth transition for border color */
+}
+
+/* Dotted border for grid lines */
+.grid-line.horizontal,
+.grid-line.vertical {
+    position: absolute;
+    border: none;
+    display: none; /* Hidden by default */
+    pointer-events: none; /* Prevent interference with grid items */
+}
+
+/* Dotted border for grid lines */
+.grid-line.horizontal {
+    border-top: 2px dotted #ccc;
+    width: 100%;
+    height: 0;
+}
+
+.grid-line.vertical {
+    border-left: 2px dotted #ccc;
+    height: 100%;
+    width: 0;
+}
+
+/* Show lines during drag/resize */
+.grid-show .grid-line {
+    display: block; /* Show lines when active */
+}
+
+/* Grid Stack Item Content */
+.grid-stack-item-content {
+    background-color: #ffffff;
+    color: #0b0e2c;
+    text-align: center;
+    position: relative;
+    pointer-events: auto;
+    padding: 24px;
+    border: 0.8px solid #e9eaf3;
+    border-radius: 12px;
+    box-shadow: 0 2px 7px rgba(20, 20, 43, .06);
+}
+
+.grid-stack-item-content .delete-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+.grid-stack-item-content .widget-name {
+    white-space: nowrap;
+    margin-right: 5px;
+}
+
+.grid-stack-item-content .edit-btn,
+.grid-stack-item-content .save-btn {
+    cursor: pointer;
+}
+
+.grid-stack-item-content .widget-name[contenteditable="true"] {
+    border: 1px solid #fff;
+    padding: 2px 5px;
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Sidebar */
+.sidebar {
+    background: #fff;
+    border-right: 1px solid #e9eaf3;
+    height: 100%;
+    padding: 10px;
+}
+
+/* Header Content */
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Title Styles */
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Inter', Arial, sans-serif;
+    font-weight: bold;
+    color: #0b0e2c;
+}
+
+/* Highcharts styling */
+.highcharts-credits {
+    display: none !important;
+}
+
+/* Grid Stack Item Removing */
+.grid-stack-item-removing {
+    opacity: 0.8;
+    filter: blur(5px);
+}
+
+/* UI Resizable Handle */
+.ui-resizable-handle {
+    background: #64b5f6;
+}
+
+/* Comment Icon */
+.comment-icon {
+    position: absolute;
+    font-size: 24px;
+    color: #007bff;
+    cursor: pointer;
+}
+
+.comment-icon:hover .comment-popup {
+    display: block;
+}
+
+/* Comment Popup */
+.comment-popup {
+    display: none;
+    position: absolute;
+    top: -10px;
+    left: 30px;
+    padding: 5px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    z-index: 1000;
+    white-space: nowrap;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.comment-mode .grid-stack-item-content {
+    cursor: pointer;
+}
+
+.comment-mode .grid-stack {
+    cursor: crosshair;
+}
+
+/* Custom Modal */
+.custom-modal {
+    width: 90vw;
+    max-width: 90vw;
+    height: 85vh;
+    max-height: 85vh;
+}
+
+.custom-modal .modal-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-body {
+    flex: 1 1 auto;
+    overflow-y: hidden;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Search Box */
+input#searchBox {
+    width: 85%;
+}
+
+/* Action Bar */
+.action-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.action-bar .form-control {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+/* Debug Container */
+.debug-container {
+    flex: 1;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+#localStorageContent {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* Marked Text */
+mark {
+    background-color: yellow;
+    color: black;
+}
+
+/* Drag Handle */
+.drag-handle {
+    width: 20px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: grab;
+    z-index: 10;
+    position: absolute;
+    top: 12px;
+    right: 16px;
+}
+
+.drag-handle svg {
+    max-width: 100%;
+    height: auto;
+}
+
+.drag-handle:active {
+    cursor: grabbing;
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #7b42ff;
+    border-color: #7b42ff;
+    color: #fff; /* White text color for primary buttons */
+}
+
+.btn-primary:hover {
+    background-color: #4a34c2;
+    border-color: #4a34c2;
+}
+
+/* Chart Colors Range */
+.chart-color-1 {
+    color: #7b42ff;
+}
+
+.chart-color-2 {
+    color: #7440f5;
+}
+
+.chart-color-3 {
+    color: #6d3feb;
+}
+
+.chart-color-4 {
+    color: #663de1;
+}
+
+.chart-color-5 {
+    color: #603cd7;
+}
+
+.chart-color-6 {
+    color: #593bcd;
+}
+
+.chart-color-7 {
+    color: #5239c3;
+}
+
+.chart-color-8 {
+    color: #4b38b9;
+}
+
+.chart-color-9 {
+    color: #4536af;
+}
+
+.chart-color-10 {
+    color: #4b28b3;
+}

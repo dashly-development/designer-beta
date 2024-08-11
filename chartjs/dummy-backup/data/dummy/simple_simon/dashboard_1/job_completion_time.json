@@ -1,0 +1,54 @@
+{
+    "metadata": {
+        "creation_date": "2024-07-25T15:54:56.068033",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Job Completion Time",
+        "description": "Simulated job completion times.",
+        "tags": [
+            "jobs",
+            "completion",
+            "time",
+            "monthly"
+        ],
+        "units": "Days"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Completion Time (Days)",
+                "values": [
+                    4.0,
+                    6.3,
+                    6.3,
+                    5.1,
+                    7.6,
+                    7.5,
+                    7.1,
+                    5.6,
+                    5.0,
+                    6.4,
+                    7.8,
+                    7.6
+                ]
+            }
+        ]
+    }
+}

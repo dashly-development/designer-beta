@@ -1,0 +1,104 @@
+{
+    "metadata": {
+        "creation_date": "2024-07-23T21:28:04.825155",
+        "data_source": "Simulated Data",
+        "data_type": "Sales Data",
+        "time_period": "Monthly",
+        "description": "Simulated average order value data in various regions.",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "tags": [
+            "sales",
+            "average order value",
+            "monthly"
+        ],
+        "data_quality": "High",
+        "units": "USD"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "average_order_value": [
+            {
+                "region": "North America",
+                "values": [
+                    144,
+                    153,
+                    55,
+                    174,
+                    168,
+                    193,
+                    121,
+                    162,
+                    66,
+                    76,
+                    51,
+                    87
+                ]
+            },
+            {
+                "region": "Europe",
+                "values": [
+                    85,
+                    74,
+                    126,
+                    74,
+                    47,
+                    82,
+                    118,
+                    48,
+                    105,
+                    77,
+                    65,
+                    42
+                ]
+            },
+            {
+                "region": "Asia",
+                "values": [
+                    93,
+                    90,
+                    40,
+                    108,
+                    108,
+                    82,
+                    144,
+                    86,
+                    146,
+                    79,
+                    49,
+                    142
+                ]
+            },
+            {
+                "region": "South America",
+                "values": [
+                    22,
+                    79,
+                    43,
+                    54,
+                    38,
+                    101,
+                    34,
+                    91,
+                    114,
+                    88,
+                    60,
+                    108
+                ]
+            }
+        ]
+    }
+}

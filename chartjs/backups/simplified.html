@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simplified GridStack and Highcharts Demo</title>
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- Include Gridstack CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gridstack@4.4.0/dist/gridstack.min.css">
+  <!-- Include Highcharts -->
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+  <script src="https://code.highcharts.com/modules/treemap.js"></script>
+  <script src="https://code.highcharts.com/modules/sunburst.js"></script>
+  <script src="https://code.highcharts.com/modules/networkgraph.js"></script>
+  <script src="https://code.highcharts.com/modules/sankey.js"></script>
+  <script src="https://code.highcharts.com/modules/wordcloud.js"></script>
+  <script src="https://code.highcharts.com/modules/funnel.js"></script>
+  <script src="https://code.highcharts.com/modules/gauge.js"></script>
+  <script src="https://code.highcharts.com/modules/packed-bubble.js"></script>
+  <script src="https://code.highcharts.com/modules/item-series.js"></script>
+  <script src="https://code.highcharts.com/modules/map.js"></script>
+  <style>
+    body {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .grid-stack {
+      background: #e3f2fd;
+      height: 600px;
+    }
+    .grid-stack-item-content {
+      background-color: #64b5f6;
+      color: #fff;
+      text-align: center;
+      position: relative;
+      pointer-events: auto; /* Enable pointer events by default */
+    }
+    .sidebar {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      height: 100%;
+      padding: 10px;
+    }
+    .grid-stack-item-removing {
+      opacity: 0.8;
+      filter: blur(5px);
+    }
+    .ui-resizable-handle {
+      background: #64b5f6;
+    }
+  </style>
+</head>
+<body>
+  <div class="header-content">
+    <h1 class="text-left my-4">Simplified GridStack and Highcharts Demo</h1>
+    <div class="text-right">
+      <button id="saveLayoutBtn" class="btn btn-success">Save Layout</button>
+      <button id="loadLayoutBtn" class="btn btn-info">Load Layout</button>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 sidebar">
+        <div class="form-group">
+          <label for="businessCategory">Business Category</label>
+          <select id="businessCategory" class="form-control">
+            <option value="sales">Sales</option>
+            <option value="marketing">Marketing</option>
+            <option value="financial">Financial</option>
+            <option value="customer">Customer</option>
+            <option value="website">Website</option>
+            <option value="operational">Operational</option>
+            <option value="hr">HR</option>
+            <option value="it">IT</option>
+            <option value="health_safety">Health & Safety</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="businessMetric">Business Metric</label>
+          <select id="businessMetric" class="form-control">
+            <!-- Options will be populated dynamically -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="chartType">Chart Type</label>
+          <select id="chartType" class="form-control">
+            <option value="line">Line Chart</option>
+            <option value="bar">Bar Chart</option>
+            <option value="column">Column Chart</option>
+            <option value="pie">Pie Chart</option>
+            <option value="area">Area Chart</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" onclick="addChartToSidebar()">Add Chart</button>
+        <div id="sidebar"></div>
+      </div>
+      <div class="col-md-10">
+        <div class="grid-stack"></div>
+      </div>
+    </div>
+    <div id="currentLayout" style="margin-top: 20px; white-space: pre-wrap;"></div>
+    <div id="savedLayouts" style="margin-top: 20px; white-space: pre-wrap;"></div>
+  </div>
+
+  <!-- Include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Include jQuery UI for draggable -->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <!-- Include Lodash -->
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  <!-- Include Gridstack JS -->
+  <script src="https://cdn.jsdelivr.net/npm/gridstack@4.4.0/dist/gridstack-h5.js"></script>
+  <!-- Include Bootstrap JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <script>
+    const businessMetrics = {
+      sales: ["Units Sold", "Sales Revenue", "Average Order Value", "Sales Growth Rate", "Sales by Region", "Sales by Product Category"],
+      marketing: ["Ad Impressions", "Click Through Rate", "Cost Per Click", "Leads Generated", "Conversion Rate", "Customer Acquisition Cost", "Social Media Engagement", "Email Campaign Performance"],
+      financial: ["Total Revenue", "Recurring Revenue", "Revenue Growth Rate", "Operating Expenses", "Marketing Expenses", "Employee Salaries", "Net Profit Margin", "Gross Profit", "EBITDA", "Earnings Per Share", "Return on Investment", "Stock Prices", "Dividend Yield"],
+      customer: ["Active Users", "Customer Satisfaction Score", "Net Promoter Score", "Churn Rate", "Customer Lifetime Value", "Support Tickets", "Average Resolution Time", "Support Satisfaction"],
+      website: ["Page Views", "Unique Visitors", "Session Duration", "Bounce Rate", "Click Paths", "Heatmaps", "Exit Rates", "Sign Up Rate", "Checkout Abandonment Rate", "Form Completion Rate"],
+      operational: ["Units Produced", "Production Downtime", "Production Cost Per Unit", "Inventory Levels", "Order Fulfillment Time", "Supply Chain Costs", "Shipping Times", "Delivery Accuracy", "Transportation Costs"],
+      hr: ["Employee Count", "Employee Turnover Rate", "Average Tenure", "Employee Satisfaction", "Time to Hire", "Cost Per Hire", "Offer Acceptance Rate", "Training Completion Rate", "Training Costs"],
+      it: ["Server Uptime", "Response Times", "Error Rates", "Security Incidents", "Time to Resolve Security Issues", "Compliance Rates", "Number of Deployments", "Bug Fix Rate", "Feature Development Rate"],
+      health_safety: ["Health Incidents", "Average Recovery Time", "Safety Incidents", "Safety Training Completion Rate", "Compliance with Safety Regulations"]
+    };
+
+    function populateMetrics() {
+      const selectedCategory = $('#businessCategory').val();
+      const metrics = businessMetrics[selectedCategory];
+      $('#businessMetric').empty();
+      metrics.forEach(metric => {
+        $('#businessMetric').append(new Option(metric, metric));
+      });
+    }
+
+    $('#businessCategory').on('change', populateMetrics);
+    $(document).ready(() => {
+      populateMetrics();
+    });
+
+    function addChartToSidebar() {
+      const selectedCategory = $('#businessCategory').val();
+      const selectedMetric = $('#businessMetric').val();
+      const selectedChartType = $('#chartType').val();
+      const chartId = `chart-${Date.now()}`;
+      const chartHtml = `
+        <div class="newWidget" id="${chartId}-container" data-chart-type="${selectedChartType}" data-category="${selectedCategory}" data-metric="${selectedMetric}">
+          <div class="grid-stack-item-content" style="padding: 5px;" draggable="true">
+            <div id="${chartId}" style="width: 100%; height: 200px;"></div>
+          </div>
+        </div>
+      `;
+      $('#sidebar').append(chartHtml);
+      generateChart(chartId, selectedChartType, selectedCategory, selectedMetric);
+      makeDraggable(`#${chartId}-container`);
+    }
+
+    function generateChart(chartId, chartType, category, metric) {
+      const jsonFile = `/dummy/${category}/${metric.replace(/ /g, '_').toLowerCase()}.json`;
+      console.log(`Generating chart from ${jsonFile}`);
+
+      $.getJSON(jsonFile, function(response) {
+        if (response.data && response.data.units_sold) {
+          const data = response.data.units_sold.map(region => ({
+            name: region.region,
+            data: region.values
+          }));
+
+          Highcharts.chart(chartId, {
+            chart: {
+              type: chartType
+            },
+            title: {
+              text: `${metric} (${category})`
+            },
+            xAxis: {
+              categories: response.data.months
+            },
+            yAxis: {
+              title: {
+                text: metric
+              }
+            },
+            series: data
+          });
+        } else {
+          console.error(`Unexpected data format in ${jsonFile}`);
+        }
+      }).fail(function(jqxhr, textStatus, error) {
+        const err = textStatus + ", " + error;
+        console.error(`Failed to load data from ${jsonFile}:`, err);
+      });
+    }
+
+    function makeDraggable(selector) {
+      $(selector).draggable({
+        revert: 'invalid',
+        helper: 'clone',
+        cursor: 'move',
+        appendTo: 'body',
+        start: function (event, ui) {
+          ui.helper.css('z-index', 100);
+        },
+        stop: function (event, ui) {
+          $(this).remove();
+        }
+      });
+    }
+
+    $(function () {
+      const grid = GridStack.init({
+        cellHeight: 70,
+        acceptWidgets: true,
+        removable: true,
+        removeTimeout: 100,
+        dragIn: '.newWidget',
+        dragInOptions: { revert: 'invalid', scroll: false, appendTo: 'body', helper: 'clone' }
+      });
+
+      window.grid = grid;
+
+      $(".grid-stack").droppable({
+        accept: '.newWidget',
+        drop: function (event, ui) {
+          const chartType = ui.helper.data('chart-type');
+          const category = ui.helper.data('category');
+          const metric = ui.helper.data('metric');
+          const chartId = `chart-${Date.now()}`;
+          const newWidgetHtml = `
+            <div class="grid-stack-item-content" data-chart-type="${chartType}">
+              <div id="${chartId}" style="width: 100%; height: 100%;"></div>
+            </div>
+          `;
+          const el = $(`<div class="grid-stack-item" gs-w="6" gs-h="4">${newWidgetHtml}</div>`).get(0);
+          grid.addWidget(el, { x: 0, y: 0, width: 6, height: 4 });
+          generateChart(chartId, chartType, category, metric);
+          updateCurrentLayout();
+        }
+      });
+
+      $('#saveLayoutBtn').on('click', function () {
+        const layoutName = prompt("Enter layout name:");
+        if (layoutName) {
+          const layout = grid.save();
+          localStorage.setItem(layoutName, JSON.stringify(layout));
+          updateSavedLayouts();
+        }
+      });
+
+      $('#loadLayoutBtn').on('click', function () {
+        const layoutName = prompt("Enter layout name to load:");
+        if (layoutName) {
+          const layout = JSON.parse(localStorage.getItem(layoutName));
+          if (layout) {
+            grid.load(layout);
+            updateCurrentLayout();
+          } else {
+            alert("Layout not found.");
+          }
+        }
+      });
+
+      function updateCurrentLayout() {
+        const layout = grid.save();
+        $('#currentLayout').text(JSON.stringify(layout, null, 2));
+      }
+
+      function updateSavedLayouts() {
+        const savedLayouts = {};
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          savedLayouts[key] = JSON.parse(localStorage.getItem(key));
+        }
+        $('#savedLayouts').text(JSON.stringify(savedLayouts, null, 2));
+      }
+
+      updateSavedLayouts();
+    });
+  </script>
+</body>
+</html>

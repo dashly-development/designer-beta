@@ -1,0 +1,87 @@
+{
+    "metadata": {
+        "creation_date": "2024-07-23T21:28:04.825155",
+        "data_source": "Simulated Data",
+        "data_type": "Sales Data",
+        "time_period": "Monthly",
+        "description": "Simulated sales data by product category.",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "tags": [
+            "sales",
+            "product category",
+            "monthly"
+        ],
+        "data_quality": "High",
+        "units": "Units Sold"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "sales_by_product_category": [
+            {
+                "category": "Electronics",
+                "values": [
+                    491,
+                    555,
+                    504,
+                    677,
+                    686,
+                    588,
+                    425,
+                    571,
+                    512,
+                    668,
+                    560,
+                    473
+                ]
+            },
+            {
+                "category": "Apparel",
+                "values": [
+                    391,
+                    383,
+                    527,
+                    307,
+                    455,
+                    562,
+                    384,
+                    304,
+                    566,
+                    427,
+                    358,
+                    339
+                ]
+            },
+            {
+                "category": "Home Goods",
+                "values": [
+                    346,
+                    378,
+                    428,
+                    317,
+                    462,
+                    393,
+                    477,
+                    340,
+                    250,
+                    430,
+                    211,
+                    299
+                ]
+            }
+        ]
+    }
+}

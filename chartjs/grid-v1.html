@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modular Gridstack Dashboard with Highcharts</title>
+
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <!-- Include Gridstack CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gridstack@4.4.0/dist/gridstack.min.css">
+
+  <!-- Custom CSS for the demo -->
+  <style>
+.body {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.grid-stack {
+  background: #FAFAFA;
+  height: 100vh;
+}
+
+.grid-stack-item-content {
+  background-color: #e3e3e3;
+  border: 1px solid #ccc;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.filters {
+  width: 100%;
+  padding: 10px;
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.grid-stack-item .drag-handle {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 16px;
+  height: 16px;
+  background: url('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/images/ui-icons_444444_256x240.png') no-repeat -64px -16px;
+  cursor: pointer;
+  z-index: 100;
+  display: none;
+}
+
+.grid-stack-item:hover .drag-handle {
+  display: block;
+}
+
+.widget-title {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.widget-name {
+  white-space: nowrap;
+  margin-right: 5px;
+}
+
+.widget-name[contenteditable="true"] {
+  border: 1px solid #fff;
+  padding: 2px 5px;
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.sidebar {
+  background: #f8f9fa;
+  border-right: 1px solid #dee2e6;
+  height: 100%;
+  padding: 10px;
+}
+
+.grid-stack-item-removing {
+  opacity: 0.8;
+  filter: blur(5px);
+}
+
+.ui-resizable-handle {
+  background: #64b5f6;
+}
+
+.grid-stack-item-content .delete-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+
+.grid-stack-item-content .edit-btn,
+.grid-stack-item-content .save-btn {
+  cursor: pointer;
+}
+  </style>
+</head>
+<body>
+
+<h1>Modular Gridstack Layout with Highcharts and Filters</h1>
+
+<div id="filters-container"></div>    
+
+<button id="edit-button" class="btn btn-primary">Enable Edit</button>
+<button id="save-as-button" class="btn btn-success">Save As</button>
+<button id="load-button" class="btn btn-info">Load</button>
+<div class="grid-stack"></div>
+
+<div id="local-storage-data"></div>
+
+<!-- Modal -->
+<div class="modal" id="loadModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Load Layout</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-3"><strong>Layout Name</strong></div>
+          <div class="col-3"><strong>Creation Date & Time</strong></div>
+          <div class="col-3"><strong>Action</strong></div>
+          <div class="col-3"><strong>Delete</strong></div>
+        </div>
+        <div id="layout-list"></div>
+        <button id="clear-all-button" class="btn btn-danger mt-3">Clear All Layouts</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include Lodash -->
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
+<!-- Include Gridstack JS -->
+<script src="https://cdn.jsdelivr.net/npm/gridstack@4.4.0/dist/gridstack-h5.js"></script>
+
+<!-- Include Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- Include Highcharts -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+
+<!-- External Chart Definitions -->
+<script src="charts.js"></script>
+
+<!-- Main Script -->
+<script src="main.js"></script>
+ 
+<!-- Filters Referencing -->    
+<script>
+  $(document).ready(function(){
+    $("#filters-container").load("filters.html");
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modular Gridstack Dashboard with Highcharts</title>
+
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <!-- Include Gridstack CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gridstack@4.4.0/dist/gridstack.min.css">
+
+  <!-- Include CSS Stylesheet -->
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+<h1>Modular Gridstack Layout with Highcharts and Filters</h1>
+
+<div id="filters-container"></div>    
+
+<button id="edit-button" class="btn btn-primary">Enable Edit</button>
+<button id="save-as-button" class="btn btn-success">Save As</button>
+<button id="load-button" class="btn btn-info">Load</button>
+<div class="grid-stack"></div>
+
+<div id="local-storage-data"></div>
+
+<!-- New div containers for displaying JSON data -->
+<div id="current-layout-json"></div>
+<div id="saved-layouts-json"></div>
+
+<!-- Modal -->
+<div class="modal" id="loadModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Load Layout</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-3"><strong>Layout Name</strong></div>
+          <div class="col-3"><strong>Creation Date & Time</strong></div>
+          <div class="col-3"><strong>Action</strong></div>
+          <div class="col-3"><strong>Delete</strong></div>
+        </div>
+        <div id="layout-list"></div>
+        <button id="clear-all-button" class="btn btn-danger mt-3">Clear All Layouts</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include Lodash -->
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
+<!-- Include Gridstack JS -->
+<script src="https://cdn.jsdelivr.net/npm/gridstack@4.4.0/dist/gridstack-h5.js"></script>
+
+<!-- Include Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- Include Highcharts -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+
+<!-- External Chart Definitions -->
+<script src="charts.js"></script>
+
+<!-- Main Script -->
+<script src="main.js"></script>
+ 
+<!-- Filters Referencing -->    
+<script>
+  $(document).ready(function(){
+    $("#filters-container").load("filters.html");
+  });
+</script>
+</body>
+</html>

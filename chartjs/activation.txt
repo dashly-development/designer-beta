@@ -1,0 +1,10 @@
+# Open Terminal
+
+# Activate the virtual environment
+source /Users/pepijnsteijger/chartjs/bin/activate
+
+# Your prompt should change to indicate the virtual environment is active
+# Example: (venv) pepijnsteijger@Pepijns-MacBook-Pro %
+
+# When done, deactivate the virtual environment
+deactivate

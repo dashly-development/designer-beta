@@ -1,0 +1,104 @@
+{
+    "metadata": {
+        "creation_date": "2024-07-23T21:28:04.825155",
+        "data_source": "Simulated Data",
+        "data_type": "Sales Data",
+        "time_period": "Monthly",
+        "description": "Simulated sales data by region.",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "tags": [
+            "sales",
+            "region",
+            "monthly"
+        ],
+        "data_quality": "High",
+        "units": "Units Sold"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "sales_by_region": [
+            {
+                "region": "North America",
+                "values": [
+                    1505,
+                    1831,
+                    1852,
+                    1665,
+                    1884,
+                    1259,
+                    1823,
+                    1548,
+                    1984,
+                    1682,
+                    1018,
+                    1126
+                ]
+            },
+            {
+                "region": "Europe",
+                "values": [
+                    1071,
+                    877,
+                    1235,
+                    1054,
+                    1320,
+                    1359,
+                    1061,
+                    1108,
+                    1242,
+                    923,
+                    1467,
+                    1429
+                ]
+            },
+            {
+                "region": "Asia",
+                "values": [
+                    1127,
+                    960,
+                    946,
+                    1152,
+                    1188,
+                    895,
+                    1106,
+                    934,
+                    1003,
+                    902,
+                    930,
+                    1123
+                ]
+            },
+            {
+                "region": "South America",
+                "values": [
+                    585,
+                    760,
+                    770,
+                    891,
+                    464,
+                    955,
+                    768,
+                    599,
+                    632,
+                    579,
+                    704,
+                    946
+                ]
+            }
+        ]
+    }
+}

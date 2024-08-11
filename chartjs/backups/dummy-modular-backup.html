@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GridStack Demo</title>
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- Include Gridstack CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gridstack@4.4.0/dist/gridstack.min.css">
+  <!-- Include Highcharts -->
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+  <script src="https://code.highcharts.com/modules/treemap.js"></script>
+  <script src="https://code.highcharts.com/modules/sunburst.js"></script>
+  <script src="https://code.highcharts.com/modules/networkgraph.js"></script>
+  <script src="https://code.highcharts.com/modules/sankey.js"></script>
+  <script src="https://code.highcharts.com/modules/wordcloud.js"></script>
+  <script src="https://code.highcharts.com/modules/funnel.js"></script>
+  <script src="https://code.highcharts.com/modules/gauge.js"></script>
+  <script src="https://code.highcharts.com/modules/packed-bubble.js"></script>
+  <script src="https://code.highcharts.com/modules/item-series.js"></script>
+  <script src="https://code.highcharts.com/modules/map.js"></script>
+  <style type="text/css">
+    body {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .grid-stack {
+      background: #e3f2fd;
+      height: 600px;
+    }
+    .grid-stack-item-content {
+      background-color: #64b5f6;
+      color: #fff;
+      text-align: center;
+      position: relative;
+      pointer-events: auto; /* Enable pointer events by default */
+    }
+    .grid-stack-item-content .delete-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      cursor: pointer;
+    }
+    .grid-stack-item-content .widget-title {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      display: flex;
+      align-items: center;
+    }
+    .grid-stack-item-content .widget-name {
+      white-space: nowrap;
+      margin-right: 5px;
+    }
+    .grid-stack-item-content .edit-btn, .grid-stack-item-content .save-btn {
+      cursor: pointer;
+    }
+    .grid-stack-item-content .widget-name[contenteditable="true"] {
+      border: 1px solid #fff;
+      padding: 2px 5px;
+      border-radius: 3px;
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+    .sidebar {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      height: 100%;
+      padding: 10px;
+    }
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .grid-stack-item-removing {
+      opacity: 0.8;
+      filter: blur(5px);
+    }
+    .ui-resizable-handle {
+      background: #64b5f6;
+    }
+    .comment-icon {
+      position: absolute;
+      font-size: 24px;
+      color: #007bff;
+      cursor: pointer;
+    }
+    .comment-icon:hover .comment-popup {
+      display: block;
+    }
+    .comment-popup {
+      display: none;
+      position: absolute;
+      top: -10px;
+      left: 30px;
+      padding: 5px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      z-index: 1000;
+      white-space: nowrap;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .comment-mode .grid-stack-item-content {
+      cursor: pointer;
+    }
+    .comment-mode .grid-stack {
+      cursor: crosshair;
+    }
+  </style>
+</head>
+<body>
+  <div class="header-content">
+    <h1 class="text-left my-4">Dashly Designer V1.0</h1>
+    <div class="text-right">
+      <button id="designModeBtn" class="btn btn-secondary">Design</button>
+      <button id="commentModeBtn" class="btn btn-primary">Comment</button>
+      <button id="saveLayoutBtn" class="btn btn-success">Save Layout</button>
+      <button id="loadLayoutBtn" class="btn btn-info">Load Layout</button>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2 d-none d-md-block sidebar">
+        <div>
+          <select id="businessAreaSelect" class="form-control">
+            <option value="" disabled selected>Select Business Area</option>
+            <option value="sales">Sales</option>
+            <option value="marketing">Marketing</option>
+            <option value="financial">Financial</option>
+            <option value="customer">Customer</option>
+            <option value="website">Website</option>
+            <option value="operational">Operational</option>
+            <option value="hr">Human Resources</option>
+            <option value="it">IT and Infrastructure</option>
+            <option value="health_safety">Health and Safety</option>
+          </select>
+          <select id="metricSelect" class="form-control mt-2">
+            <option value="" disabled selected>Select Metric</option>
+          </select>
+          <select id="chartTypeSelect" class="form-control mt-2">
+            <option value="line">Line Chart</option>
+            <option value="bar">Bar Chart</option>
+            <option value="column">Column Chart</option>
+            <option value="area">Area Chart</option>
+            <option value="pie">Pie Chart</option>
+          </select>
+          <button id="generateChartBtn" class="btn btn-primary mt-2">Generate Chart</button>
+        </div>
+        <div id="sidebarCharts" class="mt-3"></div>
+      </div>
+      <div class="col-sm-12 col-md-10">
+        <div class="grid-stack"></div>
+      </div>
+    </div>
+    <!-- Current Layout JSON Debugging Div -->
+    <div id="currentLayoutContent" style="margin-top: 20px; white-space: pre-wrap; background-color: #f8f9fa; padding: 10px; border: 1px solid #dee2e6;">
+      Current Layout Content will be displayed here for debugging.
+    </div>
+    <!-- Local Storage Content Debugging Div -->
+    <div id="localStorageContent" style="margin-top: 20px; white-space: pre-wrap; background-color: #f8f9fa; padding: 10px; border: 1px solid #dee2e6;">
+      Local Storage Content will be displayed here for debugging.
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="widgetNameModal" tabindex="-1" role="dialog" aria-labelledby="widgetNameModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="widgetNameModalLabel">Enter Widget Name</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="text" class="form-control" id="widgetNameInput" placeholder="Enter widget name">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="saveWidgetName">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comment Modal -->
+  <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="commentModalLabel">Add Comment</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <textarea id="commentInput" class="form-control" rows="4" placeholder="Enter your comment"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" id="saveCommentBtn" class="btn btn-primary">Save</button>
+          <button type="button" id="updateCommentBtn" class="btn btn-primary" style="display: none;">Update</button>
+          <button type="button" id="deleteCommentBtn" class="btn btn-danger" style="display: none;">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load Layout Modal -->
+  <div class="modal" id="loadModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Load Layout</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-3"><strong>Layout Name</strong></div>
+            <div class="col-3"><strong>Creation Date & Time</strong></div>
+            <div class="col-3"><strong>Action</strong></div>
+            <div class="col-3"><strong>Delete</strong></div>
+          </div>
+          <div id="layout-list"></div>
+          <button id="clear-all-button" class="btn btn-danger mt-3">Clear All Layouts</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Include jQuery UI for draggable -->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <!-- Include Lodash -->
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  <!-- Include Gridstack JS -->
+  <script src="https://cdn.jsdelivr.net/npm/gridstack@4.4.0/dist/gridstack-h5.js"></script>
+  <!-- Include Bootstrap JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- Include Comment JS -->
+  <script src="comment.js"></script>
+
+  <script>
+    let chartCounter = 0;
+    let currentWidget = null;
+    let chartDataTemp = {}; // Temporary storage for chart input data
+    let currentChartId = null; // Store the current chart ID globally
+    let currentChartType = null; // Store the current chart type globally
+    
+    const businessMetrics = {
+        sales: ["Units Sold", "Sales Revenue"],
+        // ... other business metrics
+    };
+
+    let grid; // Define grid in the global scope
+
+    $(function () {
+        console.log('Initializing GridStack...');
+        grid = GridStack.init({
+            cellHeight: 70,
+            acceptWidgets: true,
+            removable: true,
+            removeTimeout: 100,
+            dragIn: '.newWidget',
+            dragInOptions: { revert: 'invalid', scroll: false, appendTo: 'body', helper: 'clone' }
+        });
+
+        $('#businessAreaSelect').on('change', function() {
+            const businessArea = $(this).val();
+            const metrics = businessMetrics[businessArea];
+            $('#metricSelect').empty().append('<option value="" disabled selected>Select Metric</option>');
+            metrics.forEach(metric => {
+                $('#metricSelect').append(`<option value="${metric.toLowerCase().replace(/ /g, '_')}">${metric}</option>`);
+            });
+        });
+
+        $('#generateChartBtn').on('click', function() {
+            const businessArea = $('#businessAreaSelect').val();
+            const metric = $('#metricSelect').val();
+            const chartType = $('#chartTypeSelect').val();
+            if (!businessArea || !metric || !chartType) {
+                alert("Please select business area, metric, and chart type.");
+                return;
+            }
+
+            const dataFilePath = `dummy/${businessArea}/${metric}.json`;
+            fetch(dataFilePath)
+                .then(response => response.json())
+                .then(chartData => {
+                    console.log('Fetched data:', chartData);
+                    chartCounter++;
+                    const chartHtml = `
+                        <div class="newWidget" data-chart-type="${chartType}">
+                            <div class="grid-stack-item-content" style="padding: 5px;" draggable="true">
+                                <div class="chart-container" id="chart-container-${chartCounter}" style="width: 100%; height: 200px;"></div>
+                            </div>
+                        </div>
+                    `;
+                    $('#sidebarCharts').append(chartHtml);
+                    const container = $(`#chart-container-${chartCounter}`);
+
+                    if (container.length) {
+                        const chart = Highcharts.chart(container[0], {
+                            chart: {
+                                type: chartType
+                            },
+                            title: {
+                                text: null
+                            },
+                            xAxis: {
+                                categories: chartData.data.months
+                            },
+                            yAxis: {
+                                title: {
+                                    text: chartData.metadata.units
+                                }
+                            },
+                            series: chartData.data.units_sold.map(item => ({
+                                name: item.region || item.category,
+                                data: item.values
+                            }))
+                        });
+
+                        // Store the chart data temporarily
+                        const chartId = container.find('.highcharts-container').attr('id');
+                        container.attr('data-highcharts-id', chartId); // Store Highcharts ID as a data attribute
+                        currentChartId = chartId; // Store the chart ID globally
+                        currentChartType = chartType; // Store the chart type globally
+                        console.log('Storing data with Highcharts container ID:', chartId);
+                        chartDataTemp[chartId] = chartData;
+                        console.log('Stored data in chartDataTemp:', chartDataTemp);
+
+                        setupDraggable();
+                        console.log('Generated chart:', container[0], chartType, chartData);
+                    } else {
+                        console.error('Chart container not found.');
+                    }
+                })
+                .catch(error => console.error('Error fetching dummy data:', error));
+        });
+
+        function setupDraggable() {
+            $('.newWidget').draggable({
+                revert: 'invalid',
+                helper: 'clone',
+                cursor: 'move',
+                appendTo: 'body',
+                start: function(event, ui) {
+                    console.log('Starting drag...', ui.helper);
+                    ui.helper.css('z-index', 100);
+                },
+                stop: function(event, ui) {
+                    $(this).remove();
+                }
+            });
+        }
+
+        $(".grid-stack").droppable({
+            accept: '.newWidget',
+            drop: function(event, ui) {
+                console.log('Item dropped...', ui.helper);
+                const chartType = ui.helper.attr('data-chart-type');
+                const chartContainer = ui.helper.find('.grid-stack-item-content > .chart-container').first();
+                const newWidgetHtml = `<div class="grid-stack-item-content" data-chart-type="${chartType}"><div class="chart-container" id="chart-container-${chartCounter}" style="width: 100%; height: 100%;"></div></div>`;
+                const el = $(`<div class="grid-stack-item" gs-w="6" gs-h="4">${newWidgetHtml}</div>`).get(0);
+                currentWidget = el;
+                $('#widgetNameModal').modal('show');
+            }
+        });
+
+        $('#saveWidgetName').on('click', function() {
+            const widgetName = $('#widgetNameInput').val();
+            if (widgetName && currentWidget) {
+                const chartContainer = $(currentWidget).find('.grid-stack-item-content > .chart-container').first();
+                const chartType = currentChartType; // Use the globally stored chart type
+
+                // Log for debugging
+                console.log('Widget Name:', widgetName);
+                console.log('Current Widget:', currentWidget);
+                console.log('Chart Container:', chartContainer);
+                console.log('Chart Container ID:', chartContainer.attr('id'));
+                console.log('Chart Type:', chartType);
+
+                if (chartContainer.length && chartType) {
+                    grid.addWidget(currentWidget, {
+                        width: 6,
+                        height: 4,
+                        autoPosition: true
+                    });
+
+                    // Retrieve Highcharts ID from the global variable
+                    const chartId = currentChartId;
+                    console.log('Highcharts container ID during save:', chartId);
+
+                    const chartData = chartDataTemp[chartId]; // Retrieve the temporary stored data
+                    if (chartData) {
+                        console.log('Retrieved data from chartDataTemp:', chartData);
+                        generateHighcharts(chartContainer[0], chartType, chartData, true, widgetName);
+                        $('#widgetNameModal').modal('hide');
+                        $('#widgetNameInput').val('');
+                        currentWidget = null;
+                        initializeHighchartsResizability(); // Initialize resizability for new chart
+                        updateCurrentLayoutContent(); // Update the current layout content display
+                    } else {
+                        console.error('No chart data found for ID:', chartId);
+                    }
+                } else {
+                    console.error('Chart container or chart type is undefined:', chartContainer, chartType);
+                }
+            } else {
+                console.error('Widget name or current widget is undefined.');
+            }
+        });
+
+        $('#widgetNameInput').on('keypress', function(e) {
+            if (e.which === 13) {
+                $('#saveWidgetName').click();
+            }
+        });
+
+        $('#widgetNameModal').on('hidden.bs.modal', function () {
+            if (currentWidget) {
+                $(currentWidget).remove();
+                currentWidget = null;
+            }
+        });
+
+        $(document).on('click', '.delete-btn', function() {
+            const item = $(this).closest('.grid-stack-item');
+            grid.removeWidget(item[0]);
+            console.log('Widget removed from grid...', item[0]);
+            updateCurrentLayoutContent(); // Update the current layout content display
+        });
+
+        $(document).on('click', '.edit-btn', function() {
+            const content = $(this).closest('.widget-title');
+            const widgetNameElement = content.find('.widget-name');
+            widgetNameElement.attr('contenteditable', 'true').focus();
+            content.find('.edit-btn').hide();
+            content.find('.save-btn').show();
+            placeCaretAtEnd(widgetNameElement[0]);
+        });
+
+        $(document).on('click', '.save-btn', function() {
+            const content = $(this).closest('.widget-title');
+            content.find('.widget-name').attr('contenteditable', 'false');
+            content.find('.edit-btn').show();
+            content.find('.save-btn').hide();
+            updateCurrentLayoutContent(); // Update the current layout content display
+        });
+
+        $(document).on('keypress', '.widget-name[contenteditable="true"]', function(e) {
+            if (e.which === 13) {
+                $(this).closest('.widget-title').find('.save-btn').click();
+                e.preventDefault();
+            }
+        });
+
+        grid.movable('.grid-stack-item', true);
+        grid.resizable('.grid-stack-item', true);
+
+        // Define functions that interact with grid after its initialization
+        function disableChartInteractions() {
+            $('.grid-stack-item-content > div').each(function() {
+                $(this).css('pointer-events', 'none'); // Disable pointer events for Highcharts containers
+            });
+        }
+
+        function enableChartInteractions() {
+            $('.grid-stack-item-content > div').each(function() {
+                $(this).css('pointer-events', 'auto'); // Enable pointer events for Highcharts containers
+            });
+        }
+
+        function disableGridStackInteractions() {
+            grid.movable('.grid-stack-item', false);
+            grid.resizable('.grid-stack-item', false);
+            $('.grid-stack-item').css('pointer-events', 'none');
+        }
+
+        function enableGridStackInteractions() {
+            grid.movable('.grid-stack-item', true);
+            grid.resizable('.grid-stack-item', true);
+            $('.grid-stack-item').css('pointer-events', 'auto');
+        }
+
+        $('#saveLayoutBtn').on('click', function() {
+            const layoutName = prompt("Enter layout name:");
+            if (layoutName) {
+                const layout = grid.save();
+                console.log('Saving Layout:', JSON.stringify(layout, null, 2)); // Log the entire layout data
+
+                const savedLayouts = JSON.parse(localStorage.getItem('savedLayouts')) || {};
+                savedLayouts[layoutName] = layout; // Store the full layout object
+                localStorage.setItem('savedLayouts', JSON.stringify(savedLayouts));
+                updateSavedLayouts();
+            }
+        });
+
+        $('#loadLayoutBtn').on('click', function () {
+            const layoutName = prompt("Enter layout name to load:");
+            if (layoutName) {
+                const savedLayouts = JSON.parse(localStorage.getItem('savedLayouts'));
+                const layoutData = savedLayouts ? savedLayouts[layoutName] : null;
+                if (layoutData) {
+                    console.log('Loading layout:', layoutName, layoutData);
+                    grid.removeAll();
+                    grid.load(layoutData);
+
+                    // Delay to ensure layout has fully loaded
+                    setTimeout(() => {
+                        console.log('Reflowing charts after layout load...');
+                        $('.grid-stack-item').each(function () {
+                            const highchartsContainer = $(this).find('.grid-stack-item-content > .chart-container > .highcharts-container');
+                            if (highchartsContainer.length) {
+                                const highchartsId = highchartsContainer.attr('id');
+                                console.log('Found Highcharts container:', highchartsContainer, 'with ID:', highchartsId);
+                                const businessArea = $('#businessAreaSelect').val();
+                                const metric = $('#metricSelect').val();
+                                const chartType = $(this).find('.grid-stack-item-content').data('chart-type'); // Retrieve chart type from data attribute
+                                if (businessArea && metric) {
+                                    fetch(`dummy/${businessArea}/${metric}.json`)
+                                        .then(response => response.json())
+                                        .then(chartData => {
+                                            console.log('Retrieved data for reflow:', chartData);
+                                            if (highchartsId && chartData) {
+                                                console.log('Initializing chart with ID:', highchartsId, 'Type:', chartType, 'Data:', chartData);
+                                                generateHighcharts(highchartsContainer[0], chartType, chartData, false);
+                                            } else {
+                                                console.log('No chart data found for ID:', highchartsId);
+                                            }
+                                        })
+                                        .catch(error => console.error('Error fetching dummy data for reflow:', error));
+                                } else {
+                                    console.log('Business area or metric is not selected.');
+                                }
+                            } else {
+                                console.log('No Highcharts container found in element:', this);
+                            }
+                        });
+                    }, 100); // Adjust delay as necessary
+                    updateCurrentLayoutContent();
+                } else {
+                    alert("Layout not found.");
+                }
+            }
+        });
+
+        function generateHighcharts(container, type, chartData, showTitle=true, title='') {
+            console.log('Generating Highcharts for container:', container, 'Type:', type, 'Data:', chartData);
+            const categories = chartData.data.months;
+            const series = chartData.data.units_sold.map(item => ({ name: item.region || item.category, data: item.values }));
+            const options = {
+                chart: { type: type },
+                title: { text: showTitle ? title : null },
+                xAxis: { categories: categories },
+                yAxis: { title: { text: chartData.metadata.units } },
+                series: series
+            };
+            Highcharts.chart(container, options);
+        }
+
+        grid.on('change', function(event, items) {
+            console.log('GridStack items changed:', items);
+            updateCurrentLayoutContent(); // Update the current layout content display
+        });
+
+        grid.on('resizestop', function(event, element) {
+            console.log('GridStack item resized:', element);
+            const highchartsContainer = $(element).find('.grid-stack-item-content > .chart-container > .highcharts-container');
+            if (highchartsContainer.length) {
+                const highchartsId = highchartsContainer.attr('id');
+                console.log('Resizing chart with ID:', highchartsId);
+                const chart = Highcharts.charts.find(c => c.renderTo.id === highchartsId);
+                if (chart) {
+                    console.log('Triggering chart reflow for:', highchartsId);
+                    chart.reflow();
+                } else {
+                    console.log('No Highcharts instance found for ID:', highchartsId);
+                }
+            } else {
+                console.log('No Highcharts container found in resized element:', element);
+            }
+        });
+
+        function updateSavedLayouts() {
+            const savedLayouts = JSON.parse(localStorage.getItem('savedLayouts')) || {};
+            $('#localStorageContent').text(JSON.stringify(savedLayouts, null, 2));
+        }
+
+        function updateCurrentLayoutContent() {
+            const layout = grid.save();
+            $('#currentLayoutContent').text(JSON.stringify(layout, null, 2));
+            console.log('Updated current layout content:', layout);
+        }
+
+        updateSavedLayouts();
+        updateCurrentLayoutContent();
+    });
+
+    function placeCaretAtEnd(el) {
+        el.focus();
+        if (typeof window.getSelection != "undefined" && typeof document.createRange != "undefined") {
+            const range = document.createRange();
+            range.selectNodeContents(el);
+            range.collapse(false);
+            const sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+        } else if (typeof document.body.createTextRange != "undefined") {
+            const textRange = document.body.createTextRange();
+            textRange.moveToElementText(el);
+            textRange.collapse(false);
+            textRange.select();
+        }
+    }
+
+    function initializeHighchartsResizability() {
+        $('.grid-stack-item').each(function() {
+            const highchartsContainer = $(this).find('.grid-stack-item-content .chart-container > .highcharts-container');
+            if (highchartsContainer.length) {
+                const chart = Highcharts.charts.find(c => c.renderTo.id === highchartsContainer.attr('id'));
+                if (chart) {
+                    chart.reflow();
+                }
+            }
+        });
+    }
+
+    function generateUniqueId() {
+        return 'chart-container-' + Math.random().toString(36).substr(2, 9);
+    }
+
+    function initializeChart(container) {
+        let containerId = container.attr('id');
+        if (!containerId) {
+            containerId = generateUniqueId();
+            container.attr('id', containerId);
+        }
+
+        let highchartsChartId = container.data('highcharts-chart');
+        if (!highchartsChartId) {
+            Highcharts.chart(containerId, {
+                chart: {
+                    type: 'line'
+                },
+                title: {
+                    text: 'Sample Chart'
+                },
+                series: [{
+                    name: 'Sample Series',
+                    data: [1, 3, 2, 4]
+                }]
+            });
+        }
+    }
+
+    $('.chart-container').each(function() {
+        initializeChart($(this));
+    });
+
+    function addNewChart() {
+        const gridItem = $('<div class="grid-stack-item"><div class="grid-stack-item-content"><div class="chart-container" style="width: 100%; height: 100%;"></div></div></div>');
+        $('#grid').append(gridItem);
+        const container = gridItem.find('.chart-container');
+        initializeChart(container);
+    }
+
+    $('#add-chart-button').on('click', function() {
+        addNewChart();
+    });
+
+    function placeCaretAtEnd(el) {
+        el.focus();
+        if (typeof window.getSelection != "undefined" && typeof document.createRange != "undefined") {
+            const range = document.createRange();
+            range.selectNodeContents(el);
+            range.collapse(false);
+            const sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+        } else if (typeof document.body.createTextRange != "undefined") {
+            const textRange = document.body.createTextRange();
+            textRange.moveToElementText(el);
+            textRange.collapse(false);
+            textRange.select();
+        }
+    }
+
+    function initializeHighchartsResizability() {
+        $('.grid-stack-item').each(function() {
+            const highchartsContainer = $(this).find('.grid-stack-item-content .chart-container > .highcharts-container');
+            if (highchartsContainer.length) {
+                const chart = Highcharts.charts.find(c => c.renderTo.id === highchartsContainer.attr('id'));
+                if (chart) {
+                    chart.reflow();
+                }
+            }
+        });
+    }
+
+    function generateUniqueId() {
+        return 'chart-container-' + Math.random().toString(36).substr(2, 9);
+    }
+
+    function initializeChart(container) {
+        let containerId = container.attr('id');
+        if (!containerId) {
+            containerId = generateUniqueId();
+            container.attr('id', containerId);
+        }
+
+        let highchartsChartId = container.data('highcharts-chart');
+        if (!highchartsChartId) {
+            Highcharts.chart(containerId, {
+                chart: {
+                    type: 'line'
+                },
+                title: {
+                    text: 'Sample Chart'
+                },
+                series: [{
+                    name: 'Sample Series',
+                    data: [1, 3, 2, 4]
+                }]
+            });
+        }
+    }
+
+    $('.chart-container').each(function() {
+        initializeChart($(this));
+    });
+
+    function addNewChart() {
+        const gridItem = $('<div class="grid-stack-item"><div class="grid-stack-item-content"><div class="chart-container" style="width: 100%; height: 100%;"></div></div></div>');
+        $('#grid').append(gridItem);
+        const container = gridItem.find('.chart-container');
+        initializeChart(container);
+    }
+
+    $('#add-chart-button').on('click', function() {
+        addNewChart();
+    });
+</script>
+</body>
+</html>

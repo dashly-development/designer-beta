@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-07-25T15:54:56.068033",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Capacity Utilization",
+        "description": "Simulated capacity utilization data.",
+        "tags": [
+            "capacity",
+            "utilization",
+            "monthly"
+        ],
+        "units": "Percentage"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Utilization",
+                "values": [
+                    75,
+                    75,
+                    76,
+                    88,
+                    89,
+                    74,
+                    82,
+                    82,
+                    85,
+                    67,
+                    86,
+                    74
+                ]
+            }
+        ]
+    }
+}

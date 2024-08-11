@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-07-25T15:54:56.068033",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Overtime",
+        "description": "Simulated overtime data.",
+        "tags": [
+            "overtime",
+            "hours",
+            "monthly"
+        ],
+        "units": "Hours"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Overtime Hours",
+                "values": [
+                    33,
+                    10,
+                    32,
+                    23,
+                    26,
+                    34,
+                    40,
+                    25,
+                    29,
+                    15,
+                    17,
+                    32
+                ]
+            }
+        ]
+    }
+}

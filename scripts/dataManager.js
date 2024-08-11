@@ -3,7 +3,7 @@
 export async function loadClientConfig() {
     console.log("Loading client configuration...");
     try {
-        const response = await fetch('/dummy/scripts/clientConfig.json');
+        const response = await fetch('https://raw.githubusercontent.com/dashly-development/designer-beta/main/scripts/clientConfig.json');
         const config = await response.json();
         console.log("Client configuration loaded:", config);
         return config;

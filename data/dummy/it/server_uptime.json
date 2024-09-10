@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:55:49.680494",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "IT and Infrastructure Data",
+        "description": "Simulated data for server uptime.",
+        "tags": [
+            "server uptime",
+            "IT and infrastructure",
+            "monthly"
+        ],
+        "units": "Percentage"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Server Uptime",
+                "values": [
+                    96.01,
+                    95.76,
+                    95.44,
+                    95.11,
+                    98.28,
+                    98.87,
+                    96.02,
+                    98.01,
+                    95.26,
+                    95.63,
+                    97.31,
+                    97.14
+                ]
+            }
+        ]
+    }
+}

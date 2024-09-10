@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T14:02:09.420426",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Health and Safety Data",
+        "description": "Simulated data for average recovery time.",
+        "tags": [
+            "average recovery time",
+            "health and safety",
+            "monthly"
+        ],
+        "units": "Days"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Average Recovery Time",
+                "values": [
+                    17.16,
+                    28.02,
+                    22.68,
+                    28.35,
+                    25.33,
+                    9.23,
+                    4.73,
+                    6.27,
+                    10.53,
+                    26.92,
+                    22.96,
+                    7.91
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T14:02:09.420426",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Health and Safety Data",
+        "description": "Simulated data for safety training completion rate.",
+        "tags": [
+            "safety training completion rate",
+            "health and safety",
+            "monthly"
+        ],
+        "units": "Percentage"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Safety Training Completion Rate",
+                "values": [
+                    88.25,
+                    73.67,
+                    79.89,
+                    96.51,
+                    99.97,
+                    86.42,
+                    95.25,
+                    75.68,
+                    91.56,
+                    86.57,
+                    97.91,
+                    92.64
+                ]
+            }
+        ]
+    }
+}

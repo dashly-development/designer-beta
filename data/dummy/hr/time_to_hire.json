@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:57:29.705934",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Human Resources Data",
+        "description": "Simulated data for time to hire.",
+        "tags": [
+            "time to hire",
+            "human resources",
+            "monthly"
+        ],
+        "units": "Days"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Time to Hire",
+                "values": [
+                    33.01,
+                    32.59,
+                    37.91,
+                    36.32,
+                    36.79,
+                    16.53,
+                    35.87,
+                    11.29,
+                    26.89,
+                    33.98,
+                    34.5,
+                    39.68
+                ]
+            }
+        ]
+    }
+}

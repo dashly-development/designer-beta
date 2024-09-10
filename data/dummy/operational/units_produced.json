@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:52:42.880761",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Operational Data",
+        "description": "Simulated data for units produced.",
+        "tags": [
+            "units produced",
+            "operational",
+            "monthly"
+        ],
+        "units": "Units"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Units Produced",
+                "values": [
+                    11277,
+                    49589,
+                    36961,
+                    13890,
+                    21912,
+                    29072,
+                    27873,
+                    28459,
+                    8965,
+                    6070,
+                    24305,
+                    12216
+                ]
+            }
+        ]
+    }
+}

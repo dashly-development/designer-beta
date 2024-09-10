@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:55:49.680494",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "IT and Infrastructure Data",
+        "description": "Simulated data for security incidents.",
+        "tags": [
+            "security incidents",
+            "IT and infrastructure",
+            "monthly"
+        ],
+        "units": "Incidents"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Security Incidents",
+                "values": [
+                    0,
+                    10,
+                    2,
+                    7,
+                    5,
+                    10,
+                    10,
+                    0,
+                    1,
+                    4,
+                    6,
+                    7
+                ]
+            }
+        ]
+    }
+}

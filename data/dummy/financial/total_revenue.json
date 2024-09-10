@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:45:51.860138",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Financial Data",
+        "description": "Simulated data for total revenue.",
+        "tags": [
+            "total revenue",
+            "financial",
+            "monthly"
+        ],
+        "units": "USD"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Total Revenue",
+                "values": [
+                    1090442.47,
+                    1780394.78,
+                    1301368.12,
+                    1941995.96,
+                    716431.04,
+                    1415050.02,
+                    1346100.14,
+                    958816.91,
+                    1225110.68,
+                    1955512.26,
+                    1284776.97,
+                    855306.83
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:45:51.860138",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Financial Data",
+        "description": "Simulated data for marketing expenses.",
+        "tags": [
+            "marketing expenses",
+            "financial",
+            "monthly"
+        ],
+        "units": "USD"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Marketing Expenses",
+                "values": [
+                    332772.73,
+                    133187.7,
+                    201457.86,
+                    363442.3,
+                    418111.01,
+                    266368.85,
+                    114326.47,
+                    277544.25,
+                    260165.6,
+                    252289.79,
+                    393743.84,
+                    187735.18
+                ]
+            }
+        ]
+    }
+}

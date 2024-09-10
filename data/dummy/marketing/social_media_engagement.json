@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:41:05.795820",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Marketing Data",
+        "description": "Simulated data for social media engagement.",
+        "tags": [
+            "social media engagement",
+            "marketing",
+            "monthly"
+        ],
+        "units": "Engagements"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Social Media Engagement",
+                "values": [
+                    1561,
+                    4377,
+                    2007,
+                    1314,
+                    3842,
+                    2336,
+                    4829,
+                    2887,
+                    3495,
+                    4329,
+                    3107,
+                    2086
+                ]
+            }
+        ]
+    }
+}

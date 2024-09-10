@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:41:05.795820",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Marketing Data",
+        "description": "Simulated data for cost per click.",
+        "tags": [
+            "cost per click",
+            "marketing",
+            "monthly"
+        ],
+        "units": "USD"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Cost Per Click",
+                "values": [
+                    4.74,
+                    0.55,
+                    0.76,
+                    4.43,
+                    0.96,
+                    3.03,
+                    2.91,
+                    3.63,
+                    1.76,
+                    0.85,
+                    3.99,
+                    4.28
+                ]
+            }
+        ]
+    }
+}

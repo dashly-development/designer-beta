@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:57:29.705934",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Human Resources Data",
+        "description": "Simulated data for cost per hire.",
+        "tags": [
+            "cost per hire",
+            "human resources",
+            "monthly"
+        ],
+        "units": "USD"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Cost Per Hire",
+                "values": [
+                    5706.12,
+                    5642.82,
+                    6215.99,
+                    5699.2,
+                    2781.84,
+                    6259.74,
+                    2284.39,
+                    2706.55,
+                    3314.39,
+                    4909.99,
+                    3399.05,
+                    2973.37
+                ]
+            }
+        ]
+    }
+}

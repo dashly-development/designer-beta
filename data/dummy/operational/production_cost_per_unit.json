@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:52:42.880761",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Operational Data",
+        "description": "Simulated data for production cost per unit.",
+        "tags": [
+            "production cost per unit",
+            "operational",
+            "monthly"
+        ],
+        "units": "USD"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Production Cost Per Unit",
+                "values": [
+                    9.01,
+                    7.58,
+                    2.76,
+                    4.16,
+                    6.95,
+                    5.72,
+                    2.38,
+                    3.0,
+                    3.31,
+                    2.72,
+                    7.71,
+                    4.27
+                ]
+            }
+        ]
+    }
+}

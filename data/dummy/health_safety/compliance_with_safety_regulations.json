@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T14:02:09.420426",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Health and Safety Data",
+        "description": "Simulated data for compliance with safety regulations.",
+        "tags": [
+            "compliance with safety regulations",
+            "health and safety",
+            "monthly"
+        ],
+        "units": "Percentage"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Compliance with Safety Regulations",
+                "values": [
+                    98.6,
+                    93.61,
+                    96.35,
+                    99.64,
+                    90.71,
+                    97.38,
+                    95.59,
+                    91.38,
+                    96.32,
+                    90.13,
+                    95.87,
+                    91.65
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:52:42.880761",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Operational Data",
+        "description": "Simulated data for production downtime.",
+        "tags": [
+            "production downtime",
+            "operational",
+            "monthly"
+        ],
+        "units": "Hours"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Production Downtime",
+                "values": [
+                    33,
+                    29,
+                    50,
+                    18,
+                    11,
+                    26,
+                    12,
+                    15,
+                    35,
+                    45,
+                    38,
+                    47
+                ]
+            }
+        ]
+    }
+}

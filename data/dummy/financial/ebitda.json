@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:45:51.860138",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Financial Data",
+        "description": "Simulated data for EBITDA.",
+        "tags": [
+            "ebitda",
+            "financial",
+            "monthly"
+        ],
+        "units": "USD"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "EBITDA",
+                "values": [
+                    329717.24,
+                    782892.55,
+                    527480.29,
+                    425985.12,
+                    671248.76,
+                    677835.53,
+                    287567.86,
+                    448577.42,
+                    925916.13,
+                    338680.48,
+                    305222.64,
+                    677813.3
+                ]
+            }
+        ]
+    }
+}

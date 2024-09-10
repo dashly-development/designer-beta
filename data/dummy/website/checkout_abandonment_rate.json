@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:49:18.948497",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Website Data",
+        "description": "Simulated data for checkout abandonment rate.",
+        "tags": [
+            "checkout abandonment",
+            "website",
+            "monthly"
+        ],
+        "units": "Percentage"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Checkout Abandonment Rate",
+                "values": [
+                    22.89,
+                    14.01,
+                    19.49,
+                    15.51,
+                    33.61,
+                    39.55,
+                    20.74,
+                    31.32,
+                    28.22,
+                    24.02,
+                    30.65,
+                    15.5
+                ]
+            }
+        ]
+    }
+}

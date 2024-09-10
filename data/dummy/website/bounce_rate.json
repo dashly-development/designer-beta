@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:49:18.948497",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Website Data",
+        "description": "Simulated data for bounce rate.",
+        "tags": [
+            "bounce rate",
+            "website",
+            "monthly"
+        ],
+        "units": "Percentage"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Bounce Rate",
+                "values": [
+                    58.28,
+                    39.81,
+                    53.94,
+                    32.71,
+                    52.62,
+                    52.46,
+                    20.17,
+                    56.38,
+                    45.62,
+                    41.34,
+                    51.58,
+                    57.97
+                ]
+            }
+        ]
+    }
+}

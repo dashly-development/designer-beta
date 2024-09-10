@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:49:18.948497",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Website Data",
+        "description": "Simulated data for form completion rate.",
+        "tags": [
+            "form completion rate",
+            "website",
+            "monthly"
+        ],
+        "units": "Percentage"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Form Completion Rate",
+                "values": [
+                    40.3,
+                    60.13,
+                    72.17,
+                    75.14,
+                    43.78,
+                    67.74,
+                    59.61,
+                    37.24,
+                    43.06,
+                    36.65,
+                    41.49,
+                    76.46
+                ]
+            }
+        ]
+    }
+}

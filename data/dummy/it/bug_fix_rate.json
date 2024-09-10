@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:55:49.680494",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "IT and Infrastructure Data",
+        "description": "Simulated data for bug fix rate.",
+        "tags": [
+            "bug fix rate",
+            "IT and infrastructure",
+            "monthly"
+        ],
+        "units": "Percentage"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Bug Fix Rate",
+                "values": [
+                    82.01,
+                    66.45,
+                    61.9,
+                    80.5,
+                    79.59,
+                    69.4,
+                    64.19,
+                    60.39,
+                    69.71,
+                    69.98,
+                    83.54,
+                    80.74
+                ]
+            }
+        ]
+    }
+}

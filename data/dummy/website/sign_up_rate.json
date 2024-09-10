@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:49:18.948497",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Website Data",
+        "description": "Simulated data for sign up rates.",
+        "tags": [
+            "sign up rate",
+            "website",
+            "monthly"
+        ],
+        "units": "Percentage"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Sign Up Rate",
+                "values": [
+                    2.91,
+                    6.89,
+                    9.04,
+                    2.79,
+                    1.8,
+                    8.34,
+                    9.19,
+                    6.47,
+                    6.98,
+                    5.14,
+                    8.56,
+                    4.74
+                ]
+            }
+        ]
+    }
+}

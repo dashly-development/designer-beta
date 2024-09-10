@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:57:29.705934",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Human Resources Data",
+        "description": "Simulated data for training costs.",
+        "tags": [
+            "training costs",
+            "human resources",
+            "monthly"
+        ],
+        "units": "USD"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Training Costs",
+                "values": [
+                    1623.38,
+                    3796.25,
+                    3210.07,
+                    1931.23,
+                    1051.86,
+                    4555.94,
+                    1596.57,
+                    3183.47,
+                    3598.34,
+                    1917.01,
+                    1703.43,
+                    2317.63
+                ]
+            }
+        ]
+    }
+}

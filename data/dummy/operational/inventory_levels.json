@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:52:42.880761",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Operational Data",
+        "description": "Simulated data for inventory levels.",
+        "tags": [
+            "inventory levels",
+            "operational",
+            "monthly"
+        ],
+        "units": "Units"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Inventory Levels",
+                "values": [
+                    15159,
+                    11520,
+                    13812,
+                    14075,
+                    14347,
+                    9905,
+                    17462,
+                    7927,
+                    4659,
+                    11471,
+                    10062,
+                    16615
+                ]
+            }
+        ]
+    }
+}

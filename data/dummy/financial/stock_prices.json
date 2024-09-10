@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:45:51.860138",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Financial Data",
+        "description": "Simulated data for stock prices.",
+        "tags": [
+            "stock prices",
+            "financial",
+            "monthly"
+        ],
+        "units": "USD"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Stock Prices",
+                "values": [
+                    101.53,
+                    64.68,
+                    125.37,
+                    106.4,
+                    86.72,
+                    187.98,
+                    156.51,
+                    197.63,
+                    117.09,
+                    189.66,
+                    155.11,
+                    67.21
+                ]
+            }
+        ]
+    }
+}

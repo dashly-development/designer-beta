@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:41:05.795820",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Marketing Data",
+        "description": "Simulated data for customer acquisition cost.",
+        "tags": [
+            "customer acquisition cost",
+            "marketing",
+            "monthly"
+        ],
+        "units": "USD"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Customer Acquisition Cost",
+                "values": [
+                    141.08,
+                    169.74,
+                    293.15,
+                    222.27,
+                    141.23,
+                    373.05,
+                    351.87,
+                    196.28,
+                    436.14,
+                    347.17,
+                    177.17,
+                    404.49
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:49:18.948497",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Website Data",
+        "description": "Simulated data for unique visitors.",
+        "tags": [
+            "unique visitors",
+            "website",
+            "monthly"
+        ],
+        "units": "Visitors"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Unique Visitors",
+                "values": [
+                    29817,
+                    31017,
+                    32293,
+                    39022,
+                    31031,
+                    24967,
+                    30368,
+                    34990,
+                    49928,
+                    42385,
+                    43933,
+                    32558
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:52:42.880761",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Operational Data",
+        "description": "Simulated data for transportation costs.",
+        "tags": [
+            "transportation costs",
+            "operational",
+            "monthly"
+        ],
+        "units": "USD"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Transportation Costs",
+                "values": [
+                    130360.65,
+                    49276.05,
+                    116843.98,
+                    138342.13,
+                    39320.98,
+                    31655.48,
+                    76997.4,
+                    53226.04,
+                    92236.56,
+                    36307.54,
+                    48372.29,
+                    49107.59
+                ]
+            }
+        ]
+    }
+}

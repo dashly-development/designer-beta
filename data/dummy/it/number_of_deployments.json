@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:55:49.680494",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "IT and Infrastructure Data",
+        "description": "Simulated data for number of deployments.",
+        "tags": [
+            "number of deployments",
+            "IT and infrastructure",
+            "monthly"
+        ],
+        "units": "Deployments"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Number of Deployments",
+                "values": [
+                    17,
+                    8,
+                    33,
+                    38,
+                    50,
+                    26,
+                    24,
+                    29,
+                    38,
+                    18,
+                    18,
+                    33
+                ]
+            }
+        ]
+    }
+}

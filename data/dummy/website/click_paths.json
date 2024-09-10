@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:49:18.948497",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Website Data",
+        "description": "Simulated data for click paths.",
+        "tags": [
+            "click paths",
+            "website",
+            "monthly"
+        ],
+        "units": "Paths"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Click Paths",
+                "values": [
+                    362,
+                    992,
+                    684,
+                    986,
+                    405,
+                    133,
+                    102,
+                    833,
+                    125,
+                    939,
+                    357,
+                    334
+                ]
+            }
+        ]
+    }
+}

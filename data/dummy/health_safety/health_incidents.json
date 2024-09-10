@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T14:02:09.420426",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Health and Safety Data",
+        "description": "Simulated data for health incidents.",
+        "tags": [
+            "health incidents",
+            "health and safety",
+            "monthly"
+        ],
+        "units": "Incidents"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Health Incidents",
+                "values": [
+                    9,
+                    10,
+                    7,
+                    0,
+                    0,
+                    4,
+                    7,
+                    10,
+                    10,
+                    6,
+                    5,
+                    10
+                ]
+            }
+        ]
+    }
+}

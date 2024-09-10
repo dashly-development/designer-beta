@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:41:05.795820",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Marketing Data",
+        "description": "Simulated data for email campaign performance.",
+        "tags": [
+            "email campaign performance",
+            "marketing",
+            "monthly"
+        ],
+        "units": "Conversions"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Email Campaign Conversions",
+                "values": [
+                    114,
+                    134,
+                    279,
+                    273,
+                    113,
+                    269,
+                    87,
+                    216,
+                    157,
+                    244,
+                    144,
+                    270
+                ]
+            }
+        ]
+    }
+}

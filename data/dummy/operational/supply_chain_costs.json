@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:52:42.880761",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Operational Data",
+        "description": "Simulated data for supply chain costs.",
+        "tags": [
+            "supply chain costs",
+            "operational",
+            "monthly"
+        ],
+        "units": "USD"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Supply Chain Costs",
+                "values": [
+                    274023.96,
+                    88086.64,
+                    240711.8,
+                    158960.1,
+                    97578.66,
+                    213130.05,
+                    212576.47,
+                    238839.9,
+                    71382.78,
+                    70787.11,
+                    143040.16,
+                    135407.98
+                ]
+            }
+        ]
+    }
+}

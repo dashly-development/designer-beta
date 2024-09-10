@@ -1,19 +1,19 @@
 {
     "metadata": {
-        "creation_date": "2024-07-25T15:54:56.068033",
+        "creation_date": "2024-09-10T13:45:51.860138",
         "data_source": "Simulated Data",
         "time_period": "Monthly",
         "version": "1.0",
         "author": "Data Simulation Tool",
         "data_quality": "High",
-        "data_type": "Overtime",
-        "description": "Simulated overtime data.",
+        "data_type": "Financial Data",
+        "description": "Simulated data for operating expenses.",
         "tags": [
-            "overtime",
-            "hours",
+            "operating expenses",
+            "financial",
             "monthly"
         ],
-        "units": "Hours"
+        "units": "USD"
     },
     "data": {
         "months": [
@@ -32,20 +32,20 @@
         ],
         "metrics": [
             {
-                "name": "Overtime Hours",
+                "name": "Operating Expenses",
                 "values": [
-                    33,
-                    10,
-                    32,
-                    23,
-                    26,
-                    34,
-                    40,
-                    25,
-                    29,
-                    15,
-                    17,
-                    32
+                    320269.39,
+                    1104258.25,
+                    779982.94,
+                    486816.59,
+                    574212.01,
+                    447941.41,
+                    1045990.53,
+                    1067592.48,
+                    974902.83,
+                    983821.51,
+                    1115851.14,
+                    1135974.94
                 ]
             }
         ]

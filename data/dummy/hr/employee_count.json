@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:57:29.705934",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Human Resources Data",
+        "description": "Simulated data for employee count.",
+        "tags": [
+            "employee count",
+            "human resources",
+            "monthly"
+        ],
+        "units": "Employees"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Employee Count",
+                "values": [
+                    137,
+                    327,
+                    341,
+                    362,
+                    119,
+                    109,
+                    96,
+                    140,
+                    191,
+                    405,
+                    163,
+                    61
+                ]
+            }
+        ]
+    }
+}

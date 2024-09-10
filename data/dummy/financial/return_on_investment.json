@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:45:51.860138",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Financial Data",
+        "description": "Simulated data for return on investment.",
+        "tags": [
+            "return on investment",
+            "financial",
+            "monthly"
+        ],
+        "units": "Percentage"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Return on Investment",
+                "values": [
+                    11.75,
+                    6.5,
+                    9.2,
+                    7.92,
+                    10.74,
+                    6.19,
+                    19.35,
+                    9.67,
+                    8.11,
+                    19.44,
+                    15.01,
+                    11.42
+                ]
+            }
+        ]
+    }
+}

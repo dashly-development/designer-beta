@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:52:42.880761",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Operational Data",
+        "description": "Simulated data for shipping times.",
+        "tags": [
+            "shipping times",
+            "operational",
+            "monthly"
+        ],
+        "units": "Days"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Shipping Times",
+                "values": [
+                    8.11,
+                    4.88,
+                    6.95,
+                    7.29,
+                    7.81,
+                    9.71,
+                    7.32,
+                    3.35,
+                    8.79,
+                    8.91,
+                    9.53,
+                    7.54
+                ]
+            }
+        ]
+    }
+}

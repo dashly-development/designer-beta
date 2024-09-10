@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:49:18.948497",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Website Data",
+        "description": "Simulated data for heatmaps.",
+        "tags": [
+            "heatmaps",
+            "website",
+            "monthly"
+        ],
+        "units": "Interactions"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Heatmap Interactions",
+                "values": [
+                    1242,
+                    4955,
+                    4793,
+                    4989,
+                    2331,
+                    4238,
+                    3535,
+                    1091,
+                    4089,
+                    2001,
+                    608,
+                    1817
+                ]
+            }
+        ]
+    }
+}

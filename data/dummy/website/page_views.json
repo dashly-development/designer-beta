@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:49:18.948497",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Website Data",
+        "description": "Simulated data for page views.",
+        "tags": [
+            "page views",
+            "website",
+            "monthly"
+        ],
+        "units": "Views"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Page Views",
+                "values": [
+                    85137,
+                    24829,
+                    49294,
+                    82144,
+                    38868,
+                    59654,
+                    87382,
+                    56842,
+                    68670,
+                    61436,
+                    98517,
+                    16501
+                ]
+            }
+        ]
+    }
+}

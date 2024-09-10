@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:52:42.880761",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Operational Data",
+        "description": "Simulated data for delivery accuracy.",
+        "tags": [
+            "delivery accuracy",
+            "operational",
+            "monthly"
+        ],
+        "units": "Percentage"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Delivery Accuracy",
+                "values": [
+                    93.7,
+                    96.84,
+                    98.75,
+                    87.41,
+                    98.5,
+                    85.95,
+                    86.57,
+                    85.18,
+                    94.08,
+                    87.97,
+                    86.45,
+                    88.15
+                ]
+            }
+        ]
+    }
+}

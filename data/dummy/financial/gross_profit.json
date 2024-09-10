@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:45:51.860138",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Financial Data",
+        "description": "Simulated data for gross profit.",
+        "tags": [
+            "gross profit",
+            "financial",
+            "monthly"
+        ],
+        "units": "USD"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Gross Profit",
+                "values": [
+                    452734.27,
+                    850379.63,
+                    431487.6,
+                    908458.19,
+                    1081767.39,
+                    1184878.51,
+                    966793.64,
+                    868971.25,
+                    531443.54,
+                    1331499.02,
+                    588666.79,
+                    1060995.69
+                ]
+            }
+        ]
+    }
+}

@@ -67,7 +67,7 @@ export function handleGenerateChart() {
 
   $('#generateChartBtn').prop('disabled', true);
   console.log('Fetching data for chart...');
-  const dataFilePath = `https://raw.githubusercontent.com/dashly-development/designer-beta/main/data/dummy/${businessArea}/${metric}.json`;
+  const dataFilePath = `/dummy/data/dummy/${businessArea}/${metric}.json`;
   fetch(dataFilePath)
     .then(response => response.json())
     .then(chartData => {
@@ -104,7 +104,7 @@ export function handleGenerateClientChart() {
 
   document.getElementById('generateClientChartBtn').disabled = true;
   console.log('Fetching client data for chart...');
-  const dataFilePath = `https://raw.githubusercontent.com/dashly-development/designer-beta/main/data/dummy/${client}/${dashboard}/${dataType}`
+  const dataFilePath = `/dummy/data/dummy/${client}/${dashboard}/${dataType}`
   fetch(dataFilePath)
     .then(response => response.json())
     .then(chartData => {
@@ -187,10 +187,38 @@ export function deleteWidget(widgetElement) {
 
 export function clearLayout() {
   console.log('Clearing layout...');
+
+  // Clear the grid layout (this will remove all grid items, including charts)
   window.grid.removeAll();
 
-  // Optionally, clear related data structures or localStorage
-  window.highchartsDataArray = [];
-  localStorage.removeItem('currentLayoutContent');
-  console.log('Layout cleared and data reset.');
+  // Clear comments from the DOM
+  clearComments();
+
+  console.log('Layout and comments cleared.');
+}
+
+// Function to clear comments
+export function clearComments() {
+  // Select all elements that represent the comment icons
+  const commentIcons = document.querySelectorAll('.comment-icon');
+
+  commentIcons.forEach(commentIcon => {
+    console.log(`Removing comment with id: ${commentIcon.id || 'unknown'}`);
+    // Remove the comment icon and its container (if applicable)
+    const commentContainer = commentIcon.closest('.comment-container'); // Adjust if comment text is inside a container
+    if (commentContainer) {
+      commentContainer.remove();  // Remove the entire container, including the comment text
+      console.log(`Comment container removed for icon with id: ${commentIcon.id}`);
+    } else {
+      commentIcon.remove();  // Remove just the icon if no container exists
+      console.log(`Comment icon removed: ${commentIcon.id}`);
+    }
+  });
+
+  // Clear any associated comment data structures (if applicable)
+  if (window.commentsDataArray) {
+    window.commentsDataArray = [];  // Clear comments data array
+  }
+
+  console.log('Comments cleared from DOM and data structures.');
 }

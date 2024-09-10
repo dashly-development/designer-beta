@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:45:51.860138",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Financial Data",
+        "description": "Simulated data for employee salaries.",
+        "tags": [
+            "employee salaries",
+            "financial",
+            "monthly"
+        ],
+        "units": "USD"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Employee Salaries",
+                "values": [
+                    546785.41,
+                    355831.65,
+                    567789.63,
+                    539743.95,
+                    211417.58,
+                    591708.43,
+                    405430.93,
+                    344230.28,
+                    421709.73,
+                    298349.46,
+                    457447.83,
+                    199102.06
+                ]
+            }
+        ]
+    }
+}

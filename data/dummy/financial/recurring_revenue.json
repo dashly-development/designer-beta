@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:45:51.860138",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Financial Data",
+        "description": "Simulated data for recurring revenue.",
+        "tags": [
+            "recurring revenue",
+            "financial",
+            "monthly"
+        ],
+        "units": "USD"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Recurring Revenue",
+                "values": [
+                    443158.35,
+                    716901.4,
+                    607211.15,
+                    632115.73,
+                    784598.85,
+                    217844.53,
+                    580248.5,
+                    368739.87,
+                    660385.49,
+                    332463.29,
+                    416794.36,
+                    285709.45
+                ]
+            }
+        ]
+    }
+}

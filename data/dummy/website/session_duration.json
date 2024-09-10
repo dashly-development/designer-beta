@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:49:18.948497",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Website Data",
+        "description": "Simulated data for session duration.",
+        "tags": [
+            "session duration",
+            "website",
+            "monthly"
+        ],
+        "units": "Minutes"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Session Duration",
+                "values": [
+                    1.66,
+                    3.81,
+                    4.49,
+                    3.64,
+                    3.13,
+                    1.51,
+                    4.87,
+                    2.1,
+                    1.31,
+                    1.21,
+                    2.56,
+                    3.38
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:41:05.795820",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Marketing Data",
+        "description": "Simulated data for leads generated.",
+        "tags": [
+            "leads generated",
+            "marketing",
+            "monthly"
+        ],
+        "units": "Leads"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Leads Generated",
+                "values": [
+                    893,
+                    501,
+                    678,
+                    879,
+                    307,
+                    194,
+                    280,
+                    267,
+                    791,
+                    540,
+                    466,
+                    749
+                ]
+            }
+        ]
+    }
+}

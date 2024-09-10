@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "creation_date": "2024-09-10T13:45:51.860138",
+        "data_source": "Simulated Data",
+        "time_period": "Monthly",
+        "version": "1.0",
+        "author": "Data Simulation Tool",
+        "data_quality": "High",
+        "data_type": "Financial Data",
+        "description": "Simulated data for revenue growth rate.",
+        "tags": [
+            "revenue growth rate",
+            "financial",
+            "monthly"
+        ],
+        "units": "Percentage"
+    },
+    "data": {
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "metrics": [
+            {
+                "name": "Revenue Growth Rate",
+                "values": [
+                    -1.47,
+                    14.26,
+                    2.8,
+                    11.59,
+                    -2.86,
+                    13.63,
+                    9.17,
+                    3.46,
+                    12.24,
+                    -2.41,
+                    9.04,
+                    7.57
+                ]
+            }
+        ]
+    }
+}

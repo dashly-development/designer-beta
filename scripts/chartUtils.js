@@ -1,3 +1,5 @@
+import { renderComment } from './commentUtils.js';
+
 window.highchartsDataArray = []; // Ensure highchartsDataArray is initialized
 
 export function generateHighcharts(container, type, chartData, showTitle = true, title = '', highchartsId = null) {
@@ -175,7 +177,7 @@ export function generateRandomSalesCharts() {
         console.log(`Chart name: ${chartName}`);
 
         const encodedMetric = encodeURIComponent(metric);
-        const dataFilePath = `https://raw.githubusercontent.com/dashly-development/designer-beta/main/data/dummy/sales/${metric.toLowerCase().replace(/ /g, '_')}.json`;
+        const dataFilePath = `/dummy/data/dummy/${businessArea}/${metric.toLowerCase().replace(/ /g, '_')}.json`;
 
         console.log(`Initiating data fetch from: ${dataFilePath}`);
 
@@ -251,9 +253,21 @@ function getRandomElements(arr, count) {
 }
 
 export function saveLayoutWithCharts() {
-    console.log('Saving layout with charts.');
+    console.log('Save layout button clicked.');
+    
     const layoutName = prompt("Enter layout name:");
     if (layoutName) {
+        // Step 1: Log current comments before saving
+        console.log('Current comments before saving:', window.comments);
+
+        // Check if comments array exists and has content
+        if (window.comments && window.comments.length > 0) {
+            console.log('Comments are present and ready to be saved.');
+        } else {
+            console.warn('No comments found before saving.');
+        }
+
+        // Saving layout
         const layout = window.grid.save().map(item => {
             const el = item.el || document.querySelector(`.grid-stack-item[gs-x="${item.x}"][gs-y="${item.y}"]`);
             if (!el) return null;
@@ -267,6 +281,7 @@ export function saveLayoutWithCharts() {
         }).filter(item => item !== null);
         console.log('Layout data collected:', layout);
 
+        // Saving Highcharts data
         window.highchartsDataArray = window.highchartsDataArray.map(data => {
             const chart = Highcharts.charts.find(chart => chart && chart.renderTo.id === data.containerId);
             if (chart) {
@@ -274,53 +289,105 @@ export function saveLayoutWithCharts() {
             }
             return data;
         });
-        console.log('Updated highchartsDataArray:', window.highchartsDataArray);
+        console.log('Highcharts data collected:', window.highchartsDataArray);
 
+        // Saving grid item dimensions
         window.gridItemDimensions = layout.map(item => ({
             x: item.x,
             y: item.y,
             width: item.width,
             height: item.height
         }));
-        console.log('Grid item dimensions:', window.gridItemDimensions);
+        console.log('Grid item dimensions collected:', window.gridItemDimensions);
+
+        // Step 2: Log the comments that are about to be saved
+        console.log('Saving comments:', window.comments);
 
         const savedLayouts = JSON.parse(localStorage.getItem('savedLayouts')) || {};
+
+        // Saving everything (layout, charts, grid item dimensions, and comments)
         savedLayouts[layoutName] = {
             layout: layout,
             highchartsDataArray: window.highchartsDataArray,
-            gridItemDimensions: window.gridItemDimensions
+            gridItemDimensions: window.gridItemDimensions,
+            comments: window.comments  // Save comments along with everything else
         };
         localStorage.setItem('savedLayouts', JSON.stringify(savedLayouts));
-        console.log('Layout saved under name:', layoutName);
+        console.log('Layout, Highcharts data, and comments saved under name:', layoutName);
+
+        // Step 3: Verify and log the saved comments from localStorage
+        const savedData = JSON.parse(localStorage.getItem('savedLayouts'));
+        if (savedData && savedData[layoutName] && savedData[layoutName].comments) {
+            console.log('Saved comments from localStorage:', savedData[layoutName].comments);
+        } else {
+            console.error('Saved comments not found in localStorage.');
+        }
+
+    } else {
+        console.log('No layout name entered. Save operation canceled.');
     }
 }
 
 export function loadLayoutWithCharts(layoutName) {
+    console.log('Load layout button clicked.');
+
+    // Retrieve the saved layouts from localStorage
     const savedLayouts = JSON.parse(localStorage.getItem('savedLayouts')) || {};
     const layoutData = savedLayouts[layoutName];
+
+    // Step 1: Check if layout data exists
     if (layoutData) {
-        console.log('Applying layout:', layoutData);
-        window.grid.removeAll(); // Clear current grid
+        console.log('Loading layout:', layoutName);
+        
+        // Clear current grid
+        window.grid.removeAll();
+        console.log('Cleared current grid.');
 
-        layoutData.layout.forEach(item => {
-            const el = document.createElement('div');
-            el.className = 'grid-stack-item';
-            el.setAttribute('gs-x', item.x);
-            el.setAttribute('gs-y', item.y);
-            el.setAttribute('gs-w', item.width);
-            el.setAttribute('gs-h', item.height);
-            el.innerHTML = item.content;
-            window.grid.addWidget(el);
-        });
+        // Step 2: Restoring grid layout
+        if (layoutData.layout && layoutData.layout.length > 0) {
+            console.log('Restoring grid layout...');
+            layoutData.layout.forEach(item => {
+                const el = document.createElement('div');
+                el.className = 'grid-stack-item';
+                el.setAttribute('gs-x', item.x);
+                el.setAttribute('gs-y', item.y);
+                el.setAttribute('gs-w', item.width);
+                el.setAttribute('gs-h', item.height);
+                el.innerHTML = item.content;
+                window.grid.addWidget(el);
+            });
+            console.log('Grid layout restored:', layoutData.layout);
+        } else {
+            console.warn('No grid layout found in saved data.');
+        }
 
-        layoutData.highchartsDataArray.forEach(data => {
-            initializeHighcharts(data.containerId, data.options);
-        });
+        // Step 3: Restoring Highcharts data
+        if (layoutData.highchartsDataArray && layoutData.highchartsDataArray.length > 0) {
+            console.log('Restoring Highcharts data...');
+            layoutData.highchartsDataArray.forEach(data => {
+                initializeHighcharts(data.containerId, data.options);
+            });
+            console.log('Highcharts data restored:', layoutData.highchartsDataArray);
+        } else {
+            console.warn('No Highcharts data found in saved data.');
+        }
 
-        console.log('Layout loaded successfully.');
+        // Step 4: Restoring comments
+        if (layoutData.comments && layoutData.comments.length > 0) {
+            console.log('Restoring comments...');
+            window.comments = layoutData.comments;  // Restore the comments array
+            window.comments.forEach(comment => {
+                renderComment(comment.id, comment.x, comment.y);  // Re-render each comment
+                console.log(`Comment rendered: id=${comment.id}, text="${comment.text}", x=${comment.x}, y=${comment.y}`);
+            });
+        } else {
+            console.warn('No comments found in saved data.');
+        }
+
+        console.log('Layout, Highcharts data, and comments successfully loaded for:', layoutName);
     } else {
-        alert("Error loading layout.");
         console.error('No layout data found for:', layoutName);
+        alert("Error loading layout.");
     }
 }
 

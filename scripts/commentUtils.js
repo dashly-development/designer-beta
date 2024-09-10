@@ -85,65 +85,83 @@ export function openCommentModal(e, context) {
 
 export function renderComment(id, x, y) {
   console.log("Rendering comment with id:", id);
-  const icon = $('<span>')
-    .addClass('comment-icon')
-    .attr('data-id', id)
-    .css({ top: y, left: x })
-    .text('💬')
-    .append('<div class="comment-popup"></div>')
-    .hover(
-      function () {
-        const comment = window.comments.find(c => c.id === id);
-        console.log("Displaying comment text:", comment.text);
-        $(this).find('.comment-popup').text(comment.text);
-      },
-      function () {
-        console.log("Hiding comment text");
-        $(this).find('.comment-popup').text('');
-      }
-    );
-  icon.on('click', function () {
-    if (window.isDragging) return;
-    if (!window.commentMode) return;
-    const comment = window.comments.find(c => c.id === id);
-    console.log("Editing comment:", comment);
-    $('#commentModalLabel').text('Edit Comment');
-    $('#commentInput').val(comment.text);
-    $('#saveCommentBtn').hide();
-    $('#updateCommentBtn').show();
-    $('#deleteCommentBtn').show();
-    $('#commentModal').modal('show');
-    window.currentCommentId = id;
-    $('#updateCommentBtn').off('click').on('click', function () {
-      const updatedText = $('#commentInput').val();
-      console.log("Updating comment text:", updatedText);
-      if (updatedText) {
-        comment.text = updatedText;
-        $('#commentModal').modal('hide');
-      }
-    });
 
-    $('#deleteCommentBtn').off('click').on('click', function () {
-      console.log("Deleting comment with id:", window.currentCommentId);
-      if (confirm('Are you sure you want to delete this comment?')) {
-        window.comments = window.comments.filter(c => c.id !== window.currentCommentId);
-        $(`.comment-icon[data-id="${window.currentCommentId}"]`).remove();
-        $('#commentModal').modal('hide');
-      }
-    });
-
-    $('#commentInput').off('keypress').on('keypress', function (e) {
-      if (e.which === 13) {
-        $('#updateCommentBtn').click();
-        e.preventDefault();
-      }
-    });
-  });
-  $('.grid-stack').append(icon);
-  if (window.commentMode) {
-    console.log("Enabling comment dragging");
-    enableCommentDragging();
+  // Find the comment from the stored comments
+  const comment = window.comments.find(c => c.id === id);
+  if (!comment) {
+      console.error("No comment found for id:", id);
+      return;
   }
+
+  // Create the comment icon element
+  const icon = $('<span>')
+      .addClass('comment-icon')
+      .attr('data-id', id)
+      .css({ top: y, left: x })
+      .text('💬')
+      .append('<div class="comment-popup"></div>')
+      .hover(
+          function () {
+              const commentText = window.comments.find(c => c.id === id)?.text;
+              console.log("Displaying comment text:", commentText);
+              $(this).find('.comment-popup').text(commentText);
+          },
+          function () {
+              console.log("Hiding comment text");
+              $(this).find('.comment-popup').text('');
+          }
+      );
+
+  // Attach click event for editing the comment
+  icon.on('click', function () {
+      if (window.isDragging) return;
+      if (!window.commentMode) return;
+
+      const comment = window.comments.find(c => c.id === id);
+      if (comment) {
+          console.log("Editing comment:", comment);
+          $('#commentModalLabel').text('Edit Comment');
+          $('#commentInput').val(comment.text);
+          $('#saveCommentBtn').hide();
+          $('#updateCommentBtn').show();
+          $('#deleteCommentBtn').show();
+          $('#commentModal').modal('show');
+          window.currentCommentId = id;
+
+          // Update the comment when the update button is clicked
+          $('#updateCommentBtn').off('click').on('click', function () {
+              const updatedText = $('#commentInput').val();
+              console.log("Updating comment text:", updatedText);
+              if (updatedText) {
+                  comment.text = updatedText;
+                  $('#commentModal').modal('hide');
+                  renderComment(id, comment.x, comment.y);  // Re-render the updated comment
+                  saveCommentsToLocalStorage();  // Save the updated comments to localStorage
+              }
+          });
+
+          // Delete the comment when the delete button is clicked
+          $('#deleteCommentBtn').off('click').on('click', function () {
+              console.log("Deleting comment with id:", window.currentCommentId);
+              if (confirm('Are you sure you want to delete this comment?')) {
+                  window.comments = window.comments.filter(c => c.id !== window.currentCommentId);
+                  $(`.comment-icon[data-id="${window.currentCommentId}"]`).remove();
+                  $('#commentModal').modal('hide');
+                  saveCommentsToLocalStorage();  // Save updated comments after deletion
+              }
+          });
+      }
+  });
+
+  // Append the comment icon to the grid
+  $('.grid-stack').append(icon);
+
+  // Ensure comments can be dragged when in comment mode
+  if (window.commentMode) {
+      enableCommentDragging();  // Calls the drag functionality if needed
+  }
+
+  console.log("Comment rendered with id:", id, "at position:", { x, y });
 }
 
 function enableCommentDragging() {

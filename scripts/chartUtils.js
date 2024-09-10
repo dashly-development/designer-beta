@@ -177,7 +177,7 @@ export function generateRandomSalesCharts() {
         console.log(`Chart name: ${chartName}`);
 
         const encodedMetric = encodeURIComponent(metric);
-        const dataFilePath = `/dummy/data/dummy/${businessArea}/${metric.toLowerCase().replace(/ /g, '_')}.json`;
+        const dataFilePath = `https://raw.githubusercontent.com/dashly-development/designer-beta/main/data/dummy/sales/${metric.toLowerCase().replace(/ /g, '_')}.json`;
 
         console.log(`Initiating data fetch from: ${dataFilePath}`);
 

@@ -67,7 +67,7 @@ export function handleGenerateChart() {
 
   $('#generateChartBtn').prop('disabled', true);
   console.log('Fetching data for chart...');
-  const dataFilePath = `/dummy/data/dummy/${businessArea}/${metric}.json`;
+  const dataFilePath = `https://raw.githubusercontent.com/dashly-development/designer-beta/main/data/dummy/${businessArea}/${metric}.json`;
   fetch(dataFilePath)
     .then(response => response.json())
     .then(chartData => {

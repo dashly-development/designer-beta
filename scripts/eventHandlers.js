@@ -3,6 +3,7 @@ import { initCommentMode, initDesignMode, openCommentModal } from './commentUtil
 import { handleBusinessAreaChange, handleGenerateChart, handleGenerateClientChart, saveChartName, deleteWidget, clearLayout } from './gridUtils.js';
 import { loadLayoutWithCharts, saveLayoutWithCharts, generateRandomSalesCharts } from './chartUtils.js';
 import { saveTextLabel, updateDebugContent, highlightSearchTerm, navigateSearchResults, exportGridAsPdf, togglePictureMode } from './uiManager.js';
+import { getAllLayouts, clearIndexedDB } from './indexedDBUtils.js';
 
 export function attachEventHandlers() {
     console.log("Attaching event handlers...");
@@ -66,36 +67,46 @@ export function attachEventHandlers() {
         }
     });
 
-    // Attach clear layout event handler
-    $('#clearLayoutBtn').on('click', function () {
-        if (confirm('Are you sure you want to clear the layout? This action cannot be undone.')) {
-            clearLayout();
-        }
+    // Clear IndexedDB storage instead of local storage
+    $('#clearLocalStorageBtn').on('click', function () {
+        console.log("Clear local storage button clicked.");
+
+        // Call the function to clear IndexedDB storage
+        clearIndexedDB()
+            .then(() => {
+                console.log("IndexedDB storage cleared successfully.");
+                updateDebugContent();  // Update the UI or debug info as needed
+            })
+            .catch(error => {
+                console.error("Error clearing IndexedDB storage:", error);
+            });
     });
 
     // Attach event handler for the Load button
     $('#loadLayoutBtn').on('click', function () {
         console.log("Load layout button clicked.");
 
-        // Populate the dropdown with saved layouts
-        const savedLayouts = JSON.parse(localStorage.getItem('savedLayouts')) || {};
-        const layoutDropdown = $('#layoutDropdown');
-        layoutDropdown.empty(); // Clear existing options
+        // Populate the dropdown with saved layouts from IndexedDB
+        getAllLayouts(db)
+            .then(savedLayouts => {
+                const layoutDropdown = $('#layoutDropdown');
+                layoutDropdown.empty(); // Clear existing options
 
-        if (Object.keys(savedLayouts).length > 0) {
-            // Add an initial option
-            layoutDropdown.append('<option value="" disabled selected>Select a layout</option>');
+                if (savedLayouts.length > 0) {
+                    layoutDropdown.append('<option value="" disabled selected>Select a layout</option>');
 
-            // Add options for each saved layout
-            Object.keys(savedLayouts).forEach(layoutName => {
-                layoutDropdown.append(`<option value="${layoutName}">${layoutName}</option>`);
+                    savedLayouts.forEach(layout => {
+                        layoutDropdown.append(`<option value="${layout.layoutName}">${layout.layoutName}</option>`);
+                    });
+
+                    $('#loadLayoutModal').modal('show');
+                } else {
+                    alert("No saved layouts found.");
+                }
+            })
+            .catch(error => {
+                console.error('Error loading layouts from IndexedDB:', error);
             });
-
-            // Show the modal
-            $('#loadLayoutModal').modal('show');
-        } else {
-            alert("No saved layouts found.");
-        }
     });
 
     // Event handler for loading the selected layout

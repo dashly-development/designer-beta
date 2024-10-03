@@ -23,30 +23,6 @@ export function initDesignMode() {
   enableChartInteractions();
 }
 
-export function saveCommentsToLocalStorage() {
-  localStorage.setItem('comments', JSON.stringify(window.comments));
-  console.log("Comments saved to local storage");
-}
-
-// Load comments from local storage
-export function loadCommentsFromLocalStorage() {
-  const storedComments = localStorage.getItem('comments');
-  if (storedComments) {
-    window.comments = JSON.parse(storedComments);
-    console.log("Comments loaded from local storage:", window.comments);
-  } else {
-    window.comments = [];
-  }
-}
-
-// Call this function on application load
-loadCommentsFromLocalStorage();
-
-
-// Call this function on application load or when entering picture mode
-loadCommentsFromLocalStorage();
-
-
 export function openCommentModal(e, context) {
   console.log("Attempting to open comment modal");
   if (window.commentMode && !$(e.target).hasClass('comment-icon') && !window.isDragging && !$(e.target).closest('.grid-stack-item').length) {
@@ -62,18 +38,22 @@ export function openCommentModal(e, context) {
     const posY = e.pageY - $(context).offset().top;
     console.log(`Comment position: x=${posX}, y=${posY}`);
 
+    // When saving a comment, we just push it to the comments array and render it
     $('#saveCommentBtn').off('click').on('click', function () {
       const commentText = $('#commentInput').val();
       console.log("Saving comment:", commentText);
       if (commentText) {
         const commentId = new Date().getTime();
+        // Push the comment to the window.comments array
         window.comments.push({ id: commentId, text: commentText, x: posX, y: posY });
+        // Render the comment visually
         renderComment(commentId, posX, posY);
-        saveCommentsToLocalStorage(); // Save to local storage
+        // No need to save to localStorage, comments will be saved as part of the layout in IndexedDB
         $('#commentModal').modal('hide');
       }
     });
 
+    // Handle the Enter key press to save the comment
     $('#commentInput').off('keypress').on('keypress', function (e) {
       if (e.which === 13) {
         $('#saveCommentBtn').click();
@@ -89,68 +69,73 @@ export function renderComment(id, x, y) {
   // Find the comment from the stored comments
   const comment = window.comments.find(c => c.id === id);
   if (!comment) {
-      console.error("No comment found for id:", id);
-      return;
+    console.error("No comment found for id:", id);
+    return;
   }
+
+  // Remove any existing comment icon with the same ID to avoid duplicates
+  $(`.comment-icon[data-id="${id}"]`).remove();
 
   // Create the comment icon element
   const icon = $('<span>')
-      .addClass('comment-icon')
-      .attr('data-id', id)
-      .css({ top: y, left: x })
-      .text('💬')
-      .append('<div class="comment-popup"></div>')
-      .hover(
-          function () {
-              const commentText = window.comments.find(c => c.id === id)?.text;
-              console.log("Displaying comment text:", commentText);
-              $(this).find('.comment-popup').text(commentText);
-          },
-          function () {
-              console.log("Hiding comment text");
-              $(this).find('.comment-popup').text('');
-          }
-      );
+    .addClass('comment-icon')
+    .attr('data-id', id)
+    .css({ top: y, left: x })
+    .text('💬')
+    .append('<div class="comment-popup"></div>')
+    .hover(
+      function () {
+        const commentText = window.comments.find(c => c.id === id)?.text;
+        console.log("Displaying comment text:", commentText);
+        $(this).find('.comment-popup').text(commentText);
+      },
+      function () {
+        console.log("Hiding comment text");
+        $(this).find('.comment-popup').text('');
+      }
+    );
 
   // Attach click event for editing the comment
   icon.on('click', function () {
-      if (window.isDragging) return;
-      if (!window.commentMode) return;
+    if (window.isDragging) return;
+    if (!window.commentMode) return;
 
-      const comment = window.comments.find(c => c.id === id);
-      if (comment) {
-          console.log("Editing comment:", comment);
-          $('#commentModalLabel').text('Edit Comment');
-          $('#commentInput').val(comment.text);
-          $('#saveCommentBtn').hide();
-          $('#updateCommentBtn').show();
-          $('#deleteCommentBtn').show();
-          $('#commentModal').modal('show');
-          window.currentCommentId = id;
+    const comment = window.comments.find(c => c.id === id);
+    if (comment) {
+      console.log("Editing comment:", comment);
+      $('#commentModalLabel').text('Edit Comment');
+      $('#commentInput').val(comment.text);
+      $('#saveCommentBtn').hide();
+      $('#updateCommentBtn').show();
+      $('#deleteCommentBtn').show();
+      $('#commentModal').modal('show');
+      window.currentCommentId = id;
 
-          // Update the comment when the update button is clicked
-          $('#updateCommentBtn').off('click').on('click', function () {
-              const updatedText = $('#commentInput').val();
-              console.log("Updating comment text:", updatedText);
-              if (updatedText) {
-                  comment.text = updatedText;
-                  $('#commentModal').modal('hide');
-                  renderComment(id, comment.x, comment.y);  // Re-render the updated comment
-                  saveCommentsToLocalStorage();  // Save the updated comments to localStorage
-              }
-          });
+      // Update the comment when the update button is clicked
+      $('#updateCommentBtn').off('click').on('click', function () {
+        const updatedText = $('#commentInput').val();
+        console.log("Updating comment text:", updatedText);
+        if (updatedText) {
+          comment.text = updatedText;
+          $('#commentModal').modal('hide');
+          renderComment(id, comment.x, comment.y);  // Re-render the updated comment
+          console.log("Comment updated in memory.");
+        }
+      });
 
-          // Delete the comment when the delete button is clicked
-          $('#deleteCommentBtn').off('click').on('click', function () {
-              console.log("Deleting comment with id:", window.currentCommentId);
-              if (confirm('Are you sure you want to delete this comment?')) {
-                  window.comments = window.comments.filter(c => c.id !== window.currentCommentId);
-                  $(`.comment-icon[data-id="${window.currentCommentId}"]`).remove();
-                  $('#commentModal').modal('hide');
-                  saveCommentsToLocalStorage();  // Save updated comments after deletion
-              }
-          });
-      }
+      // Delete the comment when the delete button is clicked
+      $('#deleteCommentBtn').off('click').on('click', function () {
+        console.log("Deleting comment with id:", window.currentCommentId);
+        if (confirm('Are you sure you want to delete this comment?')) {
+          // Remove the comment from window.comments
+          window.comments = window.comments.filter(c => c.id !== window.currentCommentId);
+          // Remove the comment icon from the grid
+          $(`.comment-icon[data-id="${window.currentCommentId}"]`).remove();
+          $('#commentModal').modal('hide');
+          console.log("Comment deleted from memory.");
+        }
+      });
+    }
   });
 
   // Append the comment icon to the grid
@@ -158,7 +143,7 @@ export function renderComment(id, x, y) {
 
   // Ensure comments can be dragged when in comment mode
   if (window.commentMode) {
-      enableCommentDragging();  // Calls the drag functionality if needed
+    enableCommentDragging();  // Calls the drag functionality if needed
   }
 
   console.log("Comment rendered with id:", id, "at position:", { x, y });
